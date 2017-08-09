@@ -52,15 +52,15 @@ describe('<LoginForm/>',()=>{
 
 		loginBtn.should.have.attr('type','submit');
 
-	})
+	});
+
+	it('can be submited',()=>{
+		const doSubmit = stub(LoginForm.prototype,'handleSubmit').returns(true);
+		const loginForm = shallow(<LoginForm/>);
+		loginForm.simulate('submit',{
+  				preventDefault: () => {cosole.log("yes")}
+		});
+		expect(doSubmit.called).to.be.true;
+		doSubmit.restore();
+	});
 });
-
-/*import React from 'react';
-import ReactDOM from 'react-dom';
-import { shallow, mount, render } from 'enzyme';
-import App from '../App';
-
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-});*/
