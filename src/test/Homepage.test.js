@@ -7,6 +7,7 @@ import 'should';
 import 'should-enzyme';
 
 import LoginForm from '../components/LoginForm';
+import RegisterForm from '../components/RegisterForm';
 
 describe('<LoginForm/>',()=>{
 	it('should have two input fields',()=>{
@@ -64,3 +65,31 @@ describe('<LoginForm/>',()=>{
 		doSubmit.restore();
 	});
 });
+
+describe('<RegisterForm', () =>{
+	it('should have five input fields', ()=>{
+		const wrapper=shallow(<RegisterForm/>);
+		expect(wrapper.find('input')).to.have.length(5);
+	});
+
+	it('should have two password field', ()=>{
+		const wrapper = shallow(<RegisterForm/>);
+		expect(wrapper.find({type:'password'})).to.have.length(2);
+	});
+
+	it('should have three input fields',()=>{
+		const wrapper = shallow(<RegisterForm/>);
+		expect(wrapper.find({type:'text'})).to.have.length(3);
+	});
+
+	it('should be able to submit',()=>{
+		const register = stub(RegisterForm.prototype,'handleSubmit').returns(true);
+		const registrationForm = shallow(<RegisterForm/>);
+
+		registrationForm.simulate('submit',{
+			preventDefault: () => {}
+		});
+		expect(register.called).to.be.true;
+		register.restore();
+	})
+})
