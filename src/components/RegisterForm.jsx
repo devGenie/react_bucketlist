@@ -1,4 +1,5 @@
 import React from 'react';
+import FieldWrapper from './FieldWrapper';
 
 class RegisterForm extends React.Component{
 	constructor(props){
@@ -9,15 +10,32 @@ class RegisterForm extends React.Component{
 	handleSubmit(event){
 		event.preventDefault();
 	}	
-		render(){
+	render(){
 			return(
 					<form onSubmit={this.handleSubmit}>
-						<input type="text" name="first_name"/>
-						<input type="text" name="last_name" />
-						<input type="text" name="email" />
-						<input type="password" name="password1" />
-						<input type="password" name="password2" />
-						<button type="submit" name="submit">Register</button>
+						<FieldWrapper>
+							<input type="text" name="first_name"/>
+						</FieldWrapper>
+
+						<FieldWrapper>
+							<input type="text" name="last_name" />
+						</FieldWrapper>
+
+						<FieldWrapper>
+							<input type="text" name="email" />
+						</FieldWrapper>
+
+						<FieldWrapper>
+							<input type="password" name="password1" />
+						</FieldWrapper>
+
+						<FieldWrapper>
+							<input type="password" name="password2" />
+						</FieldWrapper>
+
+						<FieldWrapper>
+							<button type="submit" name="submit">Register</button>
+						</FieldWrapper>
 					</form>
 			)}
 	}
