@@ -3,8 +3,8 @@ import React from 'react';
 class Topnav extends React.Component{
 	render(){
 		return(
-				<div className="navbar-fixed" id="mainNav">
-						<nav id="home_nav">
+				<div className="navbar-fixed">
+						<nav>
 							<div className="nav-wrapper">
 								<div className="container">
 									<a href="#" className="brand-logo">BucketlistFairy</a>
