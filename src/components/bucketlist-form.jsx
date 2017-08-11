@@ -20,10 +20,30 @@ class BucketlistForm extends React.Component{
 		this.setState({
 			[name]:value
 		})
+		console.log(this.state)
 	}
 
 	handleSubmit(event){
-		event.preventDefault()
+		event.preventDefault();
+		fetch("https://bucketapi.herokuapp.com/api/v1/bucketlists/",
+			  {
+			  	headers:{
+			  		'Content-Type':'application/json',
+			  		'Authorization':sessionStorage.getItem('auth')
+			  	},
+			  	method:'POST',
+			  	body:JSON.stringify({
+			  		"name":this.state.name,
+			  		"description":this.state.description
+			  	})
+			  }).then((response) => response.json())
+				.then((jsonResponse) => {
+					if(jsonResponse.status == 'success'){
+						alert(JSON.stringify(jsonResponse.message))
+					}else{
+						alert(JSON.stringify(jsonResponse.message))
+					}
+				})
 	}
 	render(){
 		return(
