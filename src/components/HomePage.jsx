@@ -47,9 +47,6 @@ class HomeScreen extends React.Component{
 	render(){
 		return (
 				<div className="genie-carousel">
-					
-					<Topnav/>
-
 					<div id="forms" className="row">
 						<div className="flipper">
 							<div id="loginForm_area">
