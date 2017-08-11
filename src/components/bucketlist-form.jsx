@@ -20,7 +20,6 @@ class BucketlistForm extends React.Component{
 		this.setState({
 			[name]:value
 		})
-		console.log(this.state)
 	}
 
 	handleSubmit(event){
@@ -39,7 +38,8 @@ class BucketlistForm extends React.Component{
 			  }).then((response) => response.json())
 				.then((jsonResponse) => {
 					if(jsonResponse.status == 'success'){
-						alert(JSON.stringify(jsonResponse.message))
+						console.log(JSON.stringify(jsonResponse.data))
+						this.props.handler(jsonResponse.data)
 					}else{
 						alert(JSON.stringify(jsonResponse.message))
 					}

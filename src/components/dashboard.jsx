@@ -2,13 +2,16 @@ import React from 'react';
 import Topnav from './topnav';
 import BucketList from './bucketlist';
 import BucketListForm from './bucketlist-form';
+import ItemForm from './item-form';
 
 class AddButton extends React.Component{
 	render(){
 		return(
-				<div className="col s2">
-					<button className="waves-effect waves-light btn" data-target="activityModal">Add Activity</button>
-				</div>
+				<div className="fixed-action-btn horizontal" data-target="activityModal">
+    				<a className="btn-floating btn-large red">
+      					<i className="large material-icons">add</i>
+    				</a>
+    			</div>
 			)
 	}
 }
@@ -26,7 +29,7 @@ class BucketLists extends React.Component{
 		return(
 				<div className='row'>
 					{this.props.data.map((dataPoint)=>{
-						return <BucketList data={dataPoint}/>
+						return <BucketList data={dataPoint} formCallback={this.props.formCallback}/>
 					})}
 				</div>
 			)
@@ -37,6 +40,12 @@ class DashBoard extends React.Component{
 	constructor(props){
 		super(props)
 		this.state={bucketlists:[]}
+		this.caller=''
+		this.caller_func=''
+		this.bucketlistHandler=this.bucketlistHandler.bind(this)
+		this.handleItemFormCall=this.handleItemFormCall.bind(this)
+		this.handleFetchCaller=this.handleFetchCaller.bind(this)
+		this.onComplete=this.onComplete.bind(this)
 	}
 
 	componentDidMount(){
@@ -59,6 +68,25 @@ class DashBoard extends React.Component{
 		})
 	}
 
+	bucketlistHandler(bucketlist){
+		this.setState({
+			bucketlist:this.state.bucketlists.push(bucketlist)
+		})
+	}
+
+	onComplete(data){
+		this.caller_func(data)
+	}
+
+	handleItemFormCall(bucketlist,caller_func){
+		this.caller=bucketlist
+		this.caller_func=caller_func
+	}
+
+	handleFetchCaller(){
+		return this.caller
+	}
+
 	render(){
 		return(
 				<div>
@@ -68,9 +96,10 @@ class DashBoard extends React.Component{
 							<AddButton/>
 						</div>
 
-						<BucketLists data={this.state.bucketlists}/>
+						<BucketLists data={this.state.bucketlists} formCallback={this.handleItemFormCall}/>
 					</div>
-					<BucketListForm/>
+					<BucketListForm handler={this.bucketlistHandler}/>
+					<ItemForm caller={this.handleFetchCaller} onComplete={this.onComplete}/>
 				</div>
 			)}
 }
