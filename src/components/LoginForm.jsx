@@ -1,5 +1,6 @@
 import React from 'react';
 import FieldWrapper from './FieldWrapper';
+import {Redirect} from 'react-router-dom';
 
 class LoginForm extends React.Component {
 	constructor(props){
@@ -25,7 +26,10 @@ class LoginForm extends React.Component {
 					 .then((jsonResponse) => {
 					 	console.log(JSON.stringify(jsonResponse));
 					 	if (jsonResponse.status=='success'){
-					 		sessionStorage.setItem('auth',jsonResponse.auth)
+					 		sessionStorage.setItem('auth',jsonResponse.auth);
+					 		sessionStorage.setItem('isAuthenticated',true);
+					 		console.log("yey");
+					 		window.location='/dashboard'
 					 	}
 					 	alert(sessionStorage.getItem('auth'))
 					 })
