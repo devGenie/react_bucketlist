@@ -1,6 +1,7 @@
 import React from 'react';
 import BucketListItems from './bucketlist-items';
 import ItemForm from './item-form';
+import _ from 'lodash'
 
 class Bucketlist extends React.Component{
 	constructor(props){
@@ -8,6 +9,7 @@ class Bucketlist extends React.Component{
 		this.state={items:[]}
 		this.handleClick=this.handleClick.bind(this)
 		this.completeAction=this.completeAction.bind(this)
+		this.handleItemDelete=this.handleItemDelete.bind(this)
 	}
 
 	componentDidMount(){
@@ -44,6 +46,17 @@ class Bucketlist extends React.Component{
 		this.props.formCallback(this.props.data.id,this.completeAction)
 	}
 
+	handleItemDelete(itemId){
+	_.remove(this.state.items,{
+		id:itemId
+	})
+	var newItems=this.state.items
+	this.setState({
+			items:newItems
+		})
+
+	}
+
 	render(){
 		return(
 				<div className="col s3">
@@ -51,12 +64,16 @@ class Bucketlist extends React.Component{
 						<div className="card-content">
 							<span className="card-title">
 								{this.props.data.name}
-								<i className="material-icons right" data-target="item_model" onClick={this.handleClick}>more_vert</i>
+								<div className="right">
+									<i className="material-icons float" data-target="item_model" onClick={this.handleClick}>add</i>
+									<i className="material-icons float" data-target="item_model" onClick={this.handleClick}>delete</i>
+									<i className="material-icons float" data-target="item_model" onClick={this.handleClick}>edit</i>
+								</div>
 							</span>
 
 							<p>{this.props.data.description}</p>
 							
-							<BucketListItems data={this.state.items}/>
+							<BucketListItems data={this.state.items} bucketlist={this.props.data.id} deleteFunc={this.handleItemDelete}/>
 						</div>
 					</div>
 				</div>
