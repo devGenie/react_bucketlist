@@ -91,15 +91,16 @@ class Bucketlist extends React.Component{
 					<div className="card bk_card">
 						<div className="card-content">
 							<span className="card-title">
-								{this.props.data.name}
-								<div className="right">
-									<i className="material-icons float" data-target="item_model" onClick={this.handleAddItem}>add</i>
-									<i className="material-icons float" onClick={this.handleDeleteBucketlist}>delete</i>
-									<i className="material-icons float" onClick={this.handleEditBucketlist}>edit</i>
+								<div className="listtitle">
+									{this.props.data.name}
+									<div className="right">
+										<i className="material-icons float" data-target="item_model" onClick={this.handleAddItem}>add</i>
+										<i className="material-icons float" onClick={this.handleDeleteBucketlist}>delete</i>
+										<i className="material-icons float" onClick={this.handleEditBucketlist}>edit</i>
+									</div>
 								</div>
+								<p className="about">{this.props.data.description}</p>
 							</span>
-
-							<p>{this.props.data.description}</p>
 							
 							<BucketListItems data={this.state.items} bucketlist={this.props.data.id} deleteFunc={this.handleItemDelete}/>
 						</div>
