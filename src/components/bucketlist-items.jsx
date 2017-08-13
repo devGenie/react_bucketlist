@@ -10,7 +10,7 @@ class BucketListItems extends React.Component{
 	}
 	render(){
 		return(
-				<ul className="collection">
+				<ul className="bkitems">
 					{this.props.data.map((item,index)=>{
 						return <BucketListItem data={item} bucketlist={this.props.bucketlist} itemIndex={index} onDelete={this.props.deleteFunc}/> 
 					})}
