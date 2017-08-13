@@ -157,3 +157,71 @@
 .flip{
 	transform: rotateY(180deg);
 }
+
+.material-icons{
+	font-size:15px !important;
+	cursor: pointer;
+}
+
+.items{
+	margin-top:5px;
+	margin-bottom: 5px;
+	border: 1px solid #e2e2e2;
+	padding:5px !important;
+	height:60px !important;
+	background-color: #fafafa !important;
+	border-radius: 2px !important;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 2px 0 rgba(0,0,0,.12);
+}
+
+nav{
+	background-color: #243a51 !important;
+}
+
+.item_name{
+	font-size: 13px !important;
+	font-weight: bold;
+	color:#85888c;
+	line-height: 16px !important;
+}
+
+.bkitems{
+	width: 100%;
+	padding:5px !important;
+	margin-top: 0px !important;
+	padding-top:1px !important;
+}
+.collection-item{
+	padding:5px !important;
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
+}
+
+.modal{
+	width: 30% !important;
+}
+
+.card .card-content{
+	padding:0px !important;
+}
+
+.about{
+	font-size:12px !important;
+}
+
+.complete_status{
+	display: block;
+	font-size:13px;
+	font-weight: light;
+	line-height: 10px !important;
+	margin-top:15px !important;
+}
+
+.card-title{
+	font-size: 20px !important;
+	background-color: #2f4358 !important;
+	height:80px !important;
+	margin-bottom: 0px !important;
+	color:white !important;
+	padding:10px !important;
+}
