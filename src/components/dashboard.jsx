@@ -3,6 +3,7 @@ import Topnav from './topnav';
 import BucketList from './bucketlist';
 import BucketListForm from './bucketlist-form';
 import ItemForm from './item-form';
+import _ from 'lodash';
 
 class AddButton extends React.Component{
 	render(){
@@ -29,7 +30,7 @@ class BucketLists extends React.Component{
 		return(
 				<div className='row'>
 					{this.props.data.map((dataPoint)=>{
-						return <BucketList data={dataPoint} formCallback={this.props.formCallback}/>
+						return <BucketList data={dataPoint} formCallback={this.props.formCallback} deleteHandle={this.props.handleDelete}/>
 					})}
 				</div>
 			)
@@ -46,6 +47,7 @@ class DashBoard extends React.Component{
 		this.handleItemFormCall=this.handleItemFormCall.bind(this)
 		this.handleFetchCaller=this.handleFetchCaller.bind(this)
 		this.onComplete=this.onComplete.bind(this)
+		this.updateOnDelete=this.updateOnDelete.bind(this)
 	}
 
 	componentDidMount(){
@@ -56,7 +58,7 @@ class DashBoard extends React.Component{
 			   "method":"GET"}
 		).then((response)=>response.json())
 		.then((jsonResponse)=>{
-			var res=JSON.stringify(jsonResponse);
+			let res=JSON.stringify(jsonResponse);
 			if(jsonResponse.status=='success'){
 				this.setState({
 					bucketlists:jsonResponse.data
@@ -87,6 +89,18 @@ class DashBoard extends React.Component{
 		return this.caller
 	}
 
+	updateOnDelete(deleted){
+		_.remove(this.state.bucketlists,{
+			id: deleted
+		});
+
+		let newBucketlists=this.state.bucketlists;
+
+		this.setState({
+			bucketlists:newBucketlists
+		})
+	}
+
 	render(){
 		return(
 				<div>
@@ -96,7 +110,7 @@ class DashBoard extends React.Component{
 							<AddButton/>
 						</div>
 
-						<BucketLists data={this.state.bucketlists} formCallback={this.handleItemFormCall}/>
+						<BucketLists data={this.state.bucketlists} formCallback={this.handleItemFormCall} handleDelete={this.updateOnDelete}/>
 					</div>
 					<BucketListForm handler={this.bucketlistHandler}/>
 					<ItemForm caller={this.handleFetchCaller} onComplete={this.onComplete}/>

@@ -7,9 +7,11 @@ class Bucketlist extends React.Component{
 	constructor(props){
 		super(props)
 		this.state={items:[]}
-		this.handleClick=this.handleClick.bind(this)
+		this.handleAddItem=this.handleAddItem.bind(this)
 		this.completeAction=this.completeAction.bind(this)
 		this.handleItemDelete=this.handleItemDelete.bind(this)
+		this.handleEditBucketlist=this.handleEditBucketlist.bind(this)
+		this.handleDeleteBucketlist=this.handleDeleteBucketlist.bind(this);
 	}
 
 	componentDidMount(){
@@ -42,7 +44,7 @@ class Bucketlist extends React.Component{
 		console.log(this.state.items)
 	}
 
-	handleClick(){
+	handleAddItem(){
 		this.props.formCallback(this.props.data.id,this.completeAction)
 	}
 
@@ -57,6 +59,32 @@ class Bucketlist extends React.Component{
 
 	}
 
+	handleDeleteBucketlist(){
+		let id=this.props.data.id;
+		let url ="https://bucketapi.herokuapp.com/api/v1/bucketlists/"+id;
+
+		fetch(url,{
+			headers:{
+			   		Authorization:sessionStorage.getItem('auth'),
+			   },
+			"method":"DELETE"}
+		).then((response)=>response.json())
+		.then((jsonResponse)=>{
+			console.log(jsonResponse)
+			if(jsonResponse.status=='success'){
+				this.props.deleteHandle(id);
+				console.log("yess")
+			}
+			else{
+				console.log(jsonResponse.message);
+			}
+		})
+	}
+
+	handleEditBucketlist(){
+
+	}
+
 	render(){
 		return(
 				<div className="col s3">
@@ -65,9 +93,9 @@ class Bucketlist extends React.Component{
 							<span className="card-title">
 								{this.props.data.name}
 								<div className="right">
-									<i className="material-icons float" data-target="item_model" onClick={this.handleClick}>add</i>
-									<i className="material-icons float" data-target="item_model" onClick={this.handleClick}>delete</i>
-									<i className="material-icons float" data-target="item_model" onClick={this.handleClick}>edit</i>
+									<i className="material-icons float" data-target="item_model" onClick={this.handleAddItem}>add</i>
+									<i className="material-icons float" onClick={this.handleDeleteBucketlist}>delete</i>
+									<i className="material-icons float" onClick={this.handleEditBucketlist}>edit</i>
 								</div>
 							</span>
 
