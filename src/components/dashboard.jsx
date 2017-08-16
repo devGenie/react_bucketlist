@@ -3,6 +3,7 @@ import Topnav from './topnav';
 import BucketList from './bucketlist';
 import BucketListForm from './bucketlist-form';
 import ItemForm from './item-form';
+import EditItem from './edit-item';
 import _ from 'lodash';
 
 class AddButton extends React.Component{
@@ -114,6 +115,7 @@ class DashBoard extends React.Component{
 					</div>
 					<BucketListForm handler={this.bucketlistHandler}/>
 					<ItemForm caller={this.handleFetchCaller} onComplete={this.onComplete}/>
+					<EditItem/>
 				</div>
 			)}
 }
