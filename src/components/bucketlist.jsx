@@ -94,6 +94,7 @@ class Bucketlist extends React.Component{
 								<div className="listtitle">
 									{this.props.data.name}
 									<div className="right">
+										<a sclassName="secondary-content" onClick={this.handleDone}><i className="material-icons">more_vert</i></a>
 										<i className="material-icons float" data-target="item_model" onClick={this.handleAddItem}>add</i>
 										<i className="material-icons float" onClick={this.handleDeleteBucketlist}>delete</i>
 										<i className="material-icons float" onClick={this.handleEditBucketlist}>edit</i>
