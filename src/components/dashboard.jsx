@@ -115,7 +115,7 @@ class DashBoard extends React.Component{
 					</div>
 					<BucketListForm handler={this.bucketlistHandler}/>
 					<ItemForm caller={this.handleFetchCaller} onComplete={this.onComplete}/>
-					<EditItem/>
+					<EditItem caller={this.handleFetchCaller} onComplete={this.onComplete}/>
 				</div>
 			)}
 }
