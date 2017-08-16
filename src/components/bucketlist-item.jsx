@@ -1,8 +1,26 @@
 import React from 'react';
 
+class SeeMore extends React.Component{
+	constructor(props){
+		super(props)
+	}
+
+	render(){
+		return(
+			<div className="over_flow_button">
+				<a className="dropdown_toggle"><i className="material-icons">more_vert</i></a>
+				<div className="overflow_content">
+					{this.props.children}
+				</div>
+			</div>
+		)
+	}
+}
+
 class BucketListItem extends React.Component{
 	constructor(props){
 		super(props)
+		this.state={completed:this.props.data.complete_status,date_completed:this.props.data.date_completed}
 		this.handleDelete=this.handleDelete.bind(this)
 		this.handleEdit=this.handleEdit.bind(this)
 		this.handleDone=this.handleDone.bind(this)
@@ -45,7 +63,10 @@ class BucketListItem extends React.Component{
 		.then((jsonResponse)=>{
 			console.log(jsonResponse)
 			if(jsonResponse.status=='success'){	
-				console.log("yess")
+				this.setState({
+					completed:true,
+					date_completed:jsonResponse.data.date_completed
+				})
 			}
 			else{
 				console.log(jsonResponse.message);
@@ -57,12 +78,15 @@ class BucketListItem extends React.Component{
 				<li className="items">
 				      <span className="item_name">{this.props.data.name}</span>
 					  <div className="right">
-				      	<a className="secondary-content" onClick={this.handleDelete}><i className="material-icons">delete</i></a>
-				      	<a className="secondary-content" ><i className="material-icons">edit</i></a>
-				      	<a sclassName="secondary-content" onClick={this.handleDone}><i className="material-icons">done</i></a>
+						<SeeMore>
+							<a className="dropdown_icon" onClick={this.handleDone}><i className="material-icons">check_box</i></a>
+							<a className="dropdown_icon" onClick={this.handleEdit} data-target="item_edit_model"><i className="material-icons">edit</i></a>
+							<a className="dropdown_icon" onClick={this.handleEdit}><i className="material-icons">delete</i></a>
+						</SeeMore>
+
 					  </div>
 					  <span className="complete_status">
-						  {this.props.data.complete_status==true? <div className="left">{this.props.data.date_completed}</div>:<div>{"Not completed"}</div>
+						  {this.state.completed==true? <div className="success"><span className="left">Completed</span><i className="material-icons right">check_box</i></div>:<div className="pending"><span className="left">{"Pending"}</span><i className="material-icons right">access_time</i></div>
 						  }
 					  </span>
 				   </li>
