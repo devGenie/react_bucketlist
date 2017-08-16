@@ -55,7 +55,7 @@ class ItemForm extends React.Component{
 					</FieldWrapper>			
 				</div>
 
-				<FieldWrapper>
+				<FieldWrapper extraz="center">
 					<button className="btn" type='submit'>Add</button>
 				</FieldWrapper>
 			</form>
