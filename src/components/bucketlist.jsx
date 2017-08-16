@@ -8,6 +8,7 @@ class Bucketlist extends React.Component{
 		super(props)
 		this.state={items:[]}
 		this.handleAddItem=this.handleAddItem.bind(this)
+		this.handleEditItem=this.handleEditItem.bind(this)
 		this.completeAction=this.completeAction.bind(this)
 		this.handleItemDelete=this.handleItemDelete.bind(this)
 		this.handleEditBucketlist=this.handleEditBucketlist.bind(this)
@@ -46,6 +47,11 @@ class Bucketlist extends React.Component{
 
 	handleAddItem(){
 		this.props.formCallback(this.props.data.id,this.completeAction)
+	}
+
+	handleEditItem(data){
+		var edited=_.find(this.state.items,{"id":data.id})
+		alert(JSON.stringify(edited))
 	}
 
 	handleItemDelete(itemId){
@@ -103,7 +109,7 @@ class Bucketlist extends React.Component{
 								<p className="about">{this.props.data.description}</p>
 							</span>
 							
-							<BucketListItems data={this.state.items} bucketlist={this.props.data.id} deleteFunc={this.handleItemDelete}/>
+							<BucketListItems data={this.state.items} bucketlist={this.props.data.id} deleteFunc={this.handleItemDelete} editFunc={this.handleEditBucketlist}/>
 						</div>
 					</div>
 				</div>
