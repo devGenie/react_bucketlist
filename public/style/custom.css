@@ -168,11 +168,53 @@
 	margin-bottom: 5px;
 	border: 1px solid #e2e2e2;
 	padding:5px !important;
-	height:60px !important;
+	min-height:60px !important;
+	height: auto !important;
 	background-color: #fafafa !important;
 	border-radius: 2px !important;
+	cursor: pointer;
 	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 2px 0 rgba(0,0,0,.12);
+	padding-bottom:20px !important;
 }
+
+.dropdown_icon{
+	display: block;
+	font-weight: bolder;
+}
+
+.dropdown_icon:hover{
+	color:red;
+}
+
+.activate_dropdown{
+	color:red !important;
+}
+
+.over_flow_button{
+	position: relative;
+	z-index: 100;
+}
+
+.overflow_content{
+	position: absolute;
+	top:-5px;
+	visibility: hidden;
+	transition: all .25s ease;
+}
+
+.over_flow_button:hover .overflow_content {
+    opacity: 1;
+    top: 5px;
+    visibility: visible;
+}
+
+.items:hover{
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 4px 0 rgba(0,0,0,.12) !important;
+	background-color:#e8e5e5 !important;
+	transition-delay: 0.3ms;
+}
+
+
 
 nav{
 	background-color: #243a51 !important;
@@ -181,7 +223,9 @@ nav{
 .item_name{
 	font-size: 13px !important;
 	font-weight: bold;
-	color:#85888c;
+	color:#5b5d5f;
+	text-transform: capitalize;
+	text-overflow: ellipsis;
 	line-height: 16px !important;
 }
 
@@ -211,10 +255,19 @@ nav{
 
 .complete_status{
 	display: block;
-	font-size:13px;
-	font-weight: light;
+	font-size:11px;
+	font-weight: bold;
 	line-height: 10px !important;
 	margin-top:15px !important;
+	color: #85888c;
+}
+
+.pending{
+	color:#5B4205 !important;
+}
+
+.success{
+	color: #168D39 !important;
 }
 
 .card-title{
