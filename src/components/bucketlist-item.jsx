@@ -48,7 +48,7 @@ class BucketListItem extends React.Component{
 	}
 
 	handleEdit(){
-
+		this.props.onEdit(this.props.data.id)
 	}
 
 	handleDone(){
@@ -81,7 +81,7 @@ class BucketListItem extends React.Component{
 						<SeeMore>
 							<a className="dropdown_icon" onClick={this.handleDone}><i className="material-icons">check_box</i></a>
 							<a className="dropdown_icon" onClick={this.handleEdit} data-target="item_edit_model"><i className="material-icons">edit</i></a>
-							<a className="dropdown_icon" onClick={this.handleEdit}><i className="material-icons">delete</i></a>
+							<a className="dropdown_icon" onClick={this.handleDelete}><i className="material-icons">delete</i></a>
 						</SeeMore>
 
 					  </div>
