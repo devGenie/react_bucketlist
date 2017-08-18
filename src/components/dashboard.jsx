@@ -31,7 +31,7 @@ class BucketLists extends React.Component{
 		return(
 				<div className='row'>
 					{this.props.data.map((dataPoint)=>{
-						return <BucketList data={dataPoint} formCallback={this.props.formCallback} deleteHandle={this.props.handleDelete}/>
+						return <BucketList data={dataPoint} formCallback={this.props.formCallback} deleteHandle={this.props.handleDelete} itemEditCallback={this.props.itemEditCallback}/>
 					})}
 				</div>
 			)
@@ -41,9 +41,11 @@ class BucketLists extends React.Component{
 class DashBoard extends React.Component{
 	constructor(props){
 		super(props)
-		this.state={bucketlists:[]}
+		this.state={bucketlists:[],editedItem:''}
 		this.caller=''
 		this.caller_func=''
+		this.editedItem='';
+		this.handleItemEdit=this.handleItemEdit.bind(this)
 		this.bucketlistHandler=this.bucketlistHandler.bind(this)
 		this.handleItemFormCall=this.handleItemFormCall.bind(this)
 		this.handleFetchCaller=this.handleFetchCaller.bind(this)
@@ -66,7 +68,7 @@ class DashBoard extends React.Component{
 				});
 			}
 			else{
-				alert(jsonResponse.message);
+				//alert(jsonResponse.message);
 			}
 		})
 	}
@@ -90,6 +92,16 @@ class DashBoard extends React.Component{
 		return this.caller
 	}
 
+
+	handleItemEdit(bucketlist_id,item,callback){
+		this.caller=bucketlist_id
+		this.editedItem=item;
+		this.caller_func=callback;
+		this.setState({
+			editedItem:{bucketlist:bucketlist_id,item:item,callback:callback}
+		})
+	}
+
 	updateOnDelete(deleted){
 		_.remove(this.state.bucketlists,{
 			id: deleted
@@ -111,11 +123,11 @@ class DashBoard extends React.Component{
 							<AddButton/>
 						</div>
 
-						<BucketLists data={this.state.bucketlists} formCallback={this.handleItemFormCall} handleDelete={this.updateOnDelete}/>
+						<BucketLists data={this.state.bucketlists} itemEditCallback={this.handleItemEdit} formCallback={this.handleItemFormCall} handleDelete={this.updateOnDelete}/>
 					</div>
 					<BucketListForm handler={this.bucketlistHandler}/>
 					<ItemForm caller={this.handleFetchCaller} onComplete={this.onComplete}/>
-					<EditItem caller={this.handleFetchCaller} onComplete={this.onComplete}/>
+					<EditItem caller={this.state.editedItem}/>
 				</div>
 			)}
 }
