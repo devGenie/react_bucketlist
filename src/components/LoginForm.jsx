@@ -31,7 +31,7 @@ class LoginForm extends React.Component {
 					 		console.log("yey");
 					 		window.location='/dashboard'
 					 	}
-					 	alert(sessionStorage.getItem('auth'))
+					 	//alert(sessionStorage.getItem('auth'))
 					 })
 	}
 
