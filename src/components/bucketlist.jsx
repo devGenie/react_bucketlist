@@ -13,6 +13,7 @@ class Bucketlist extends React.Component{
 		this.handleItemDelete=this.handleItemDelete.bind(this)
 		this.handleEditBucketlist=this.handleEditBucketlist.bind(this)
 		this.handleDeleteBucketlist=this.handleDeleteBucketlist.bind(this);
+		this.finalizeEditItem=this.finalizeEditItem.bind(this);
 	}
 
 	componentDidMount(){
@@ -49,9 +50,17 @@ class Bucketlist extends React.Component{
 		this.props.formCallback(this.props.data.id,this.completeAction)
 	}
 
-	handleEditItem(data){
-		var edited=_.find(this.state.items,{"id":data.id})
-		alert(JSON.stringify(edited))
+	finalizeEditItem(data){
+		let found=_.findIndex(this.state.items,["id",data.id])
+		if(found!=undefined){
+			let items=this.state.items;
+			items[found]=data;
+			this.setState({items:items})
+		}
+	}
+
+	handleEditItem(itemId){
+		this.props.itemEditCallback({bucketlist:this.props.data.id,item:itemId,callBack:this.finalizeEditItem})
 	}
 
 	handleItemDelete(itemId){
@@ -87,8 +96,8 @@ class Bucketlist extends React.Component{
 		})
 	}
 
-	handleEditBucketlist(){
-
+	handleEditBucketlist(item_id){
+		this.props.itemEditCallback(this.props.data.id,item_id,this.finalizeEditItem)
 	}
 
 	render(){
