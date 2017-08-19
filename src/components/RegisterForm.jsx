@@ -11,8 +11,7 @@ class RegisterForm extends React.Component{
 			'email':'',
 			'first_name':'',
 			'last_name':'',
-			'password1':'',
-			'password2':'',
+			'password':'',
 			'progress':'hide',
 			'button':''
 		}
@@ -24,6 +23,41 @@ class RegisterForm extends React.Component{
 		event.preventDefault();
 		event.preventDefault();
 		this.setState({progress:'show',button:'disabled'})
+		fetch("https://bucketapi.herokuapp.com/api/v1/auth/register",
+		      {headers:{
+						'Content-Type':'application/json'
+						}, 
+			    method:'POST',
+				body:JSON.stringify({'email':this.state.email,
+					'first_name':this.state.first_name,
+					'last_name':this.state.last_name,
+					'password':this.state.password
+					})})
+					 .then((response) => response.json())
+					 .then((jsonResponse) => {
+					 	console.log(JSON.stringify(jsonResponse));
+					 	if (jsonResponse.status=='success'){
+					 		this.setState({
+					 			progress:'hide',
+					 			button:''
+					 		})
+					 		window.Materialize.toast('Thank you for registering, Login to continue',4000)
+					 		window.$(".flipper").toggleClass("flip");
+					 	}else{
+					 		this.setState({
+					 			progress:'hide',
+					 			button:''
+					 		})
+					 		window.Materialize.toast(jsonResponse.message,4000)
+					 	}
+					 	//alert(sessionStorage.getItem('auth'))
+					 }).catch(()=>{
+					 	this.setState({
+					 			progress:'hide',
+					 			button:''
+					 		})
+					 	window.Materialize.toast("Oh No!, something went wrong, please try again.",4000)
+					 })
 	}
 
 	handleChange(event){
@@ -45,7 +79,7 @@ class RegisterForm extends React.Component{
 							</h5>
 
 							<FieldWrapper Label='Email'>
-								<input type="text" name="email" onChange={this.handleChange} />
+								<input type="email" name="email" onChange={this.handleChange} />
 							</FieldWrapper>
 
 							<FieldWrapper Label='First Name'>
@@ -57,11 +91,7 @@ class RegisterForm extends React.Component{
 							</FieldWrapper>
 
 							<FieldWrapper Label='Password'>
-								<input type="password" name="password1" onChange={this.handleChange}/>
-							</FieldWrapper>
-
-							<FieldWrapper Label='Repeat password'>
-								<input type="password" name="password2" onChange={this.handleChange}/>
+								<input type="password" name="password" onChange={this.handleChange}/>
 							</FieldWrapper>
 
 							<FieldWrapper extraz="center">
