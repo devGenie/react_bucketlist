@@ -79,19 +79,19 @@ class RegisterForm extends React.Component{
 							</h5>
 
 							<FieldWrapper Label='Email'>
-								<input type="email" name="email" onChange={this.handleChange} />
+								<input type="email" className="validate" name="email" onChange={this.handleChange} />
 							</FieldWrapper>
 
 							<FieldWrapper Label='First Name'>
-								<input type="text" name="first_name" onChange={this.handleChange}/>
+								<input type="text" className="validate" name="first_name" onChange={this.handleChange}/>
 							</FieldWrapper>
 
 							<FieldWrapper Label='Last Name'>
-								<input type="text" name="last_name" onChange={this.handleChange}/>
+								<input type="text" className="validate" name="last_name" onChange={this.handleChange}/>
 							</FieldWrapper>
 
 							<FieldWrapper Label='Password'>
-								<input type="password" name="password" onChange={this.handleChange}/>
+								<input type="password" className="validate" name="password" onChange={this.handleChange}/>
 							</FieldWrapper>
 
 							<FieldWrapper extraz="center">
