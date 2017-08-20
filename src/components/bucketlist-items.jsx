@@ -7,9 +7,6 @@ class BucketListItems extends React.Component{
 		this.handleItemEdit=this.handleItemEdit.bind(this)
 	}
 
-	componentWillReceiveProps(pp){
-	}
-
 	handleItemEdit(item_id){
 		this.props.editFunc(item_id)
 	}
@@ -18,7 +15,7 @@ class BucketListItems extends React.Component{
 			return(
 					<ul className="bkitems">
 						{this.props.data.map((item,index)=>{
-							return <BucketListItem data={item} bucketlist={this.props.bucketlist} itemIndex={index} onEdit={this.props.editFunc} onDelete={this.props.deleteFunc}/> 
+							return <BucketListItem key={index} data={item} bucketlist={this.props.bucketlist} itemIndex={index} onEdit={this.props.editFunc} onDelete={this.props.deleteFunc}/> 
 						})}
 					</ul>
 				)
