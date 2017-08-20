@@ -50,23 +50,23 @@ class EditItem extends React.Component{
 
     render(){
         return(
-            <form className="modal" id="item_edit_model" method="POST" onSubmit={this.handleSubmit}>
-                <h4 className="modal-header center">
-					Edit Item
-				</h4>
+            <div id="item_edit_model" className="modal">
+				<form className="modal-content" method="POST" onSubmit={this.handleSubmit}>
+					<h4 className="header2">
+						Edit Item
+					</h4>
 
-				<div className="modal-content">
 					<FieldWrapper Label="Name">
-						<input type="text" name="name" id="item_name" className="validate" onChange={this.handleChange}/>
+						<input placeholder="Name of bucketlist item" type="text" name="name" id="item_name" className="validate" onChange={this.handleChange}/>
 					</FieldWrapper>			
-				</div>
 
-				<FieldWrapper>
-					<button className="btn" type='submit'>Edit</button>
-				</FieldWrapper>
-            </form>
+					<FieldWrapper extraz="center">
+						<button className="btn" type='submit'>Edit</button>
+					</FieldWrapper>
+				</form>
+			</div>
         )
     }
 }
 
-export default EditItem ;
+export default EditItem;
