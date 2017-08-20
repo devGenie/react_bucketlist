@@ -74,7 +74,13 @@ class BucketListItem extends React.Component{
 		})
 	}
 	render(){
-		return(
+		if(this.props.itemIndex==null){
+			return(<li className="items">
+					      <span className="item_name">{this.props.data.name}</span>
+					</li>)
+		}
+		else{
+			return(
 				<li className="items">
 				      <span className="item_name">{this.props.data.name}</span>
 					  <div className="right">
@@ -91,6 +97,7 @@ class BucketListItem extends React.Component{
 					  </span>
 				   </li>
 			)
+		}
 	}
 }
 
