@@ -8,17 +8,17 @@ class Bucketlist extends React.Component{
 		super(props)
 		this.state={items:[]}
 		this.handleAddItem=this.handleAddItem.bind(this)
-		this.handleEditItem=this.handleEditItem.bind(this)
+		this.handleEditBucketlist=this.handleEditBucketlist.bind(this)
 		this.completeAction=this.completeAction.bind(this)
 		this.handleItemDelete=this.handleItemDelete.bind(this)
-		this.handleEditBucketlist=this.handleEditBucketlist.bind(this)
+		this.handleEditBucketlistItem=this.handleEditBucketlistItem.bind(this)
 		this.handleDeleteBucketlist=this.handleDeleteBucketlist.bind(this);
 		this.finalizeEditItem=this.finalizeEditItem.bind(this);
 	}
 
 	componentDidMount(){
-		var url ="https://bucketapi.herokuapp.com/api/v1/bucketlists/";
-		var itemsUrl=url+this.props.data.id+"/items/";
+		let url ="https://bucketapi.herokuapp.com/api/v1/bucketlists/";
+		let itemsUrl=url+this.props.data.id+"/items/";
 		fetch(itemsUrl,
 			   {headers:{
 			   		Authorization:sessionStorage.getItem('auth')
@@ -38,7 +38,7 @@ class Bucketlist extends React.Component{
 	}
 
 	completeAction(result){
-		var newVar=this.state.items.slice()
+		let newVar=this.state.items.slice()
 		newVar.push(result)
 
 		this.setState({items:newVar})
@@ -59,15 +59,20 @@ class Bucketlist extends React.Component{
 		}
 	}
 
-	handleEditItem(itemId){
-		this.props.itemEditCallback({bucketlist:this.props.data.id,item:itemId,callBack:this.finalizeEditItem})
+	handleEditBucketlist(){
+		this.props.formCallback(this.props.data.id,this.finalizeEditBucketlist);
+		//this.props.bucketlistEditCallback({bucketlist:this.props.data.id,item:itemId,callBack:this.finalizeEditItem})
+	}
+
+	finalizeEditBucketlist(data){
+		alert(JSON.stringify(data))
 	}
 
 	handleItemDelete(itemId){
 	_.remove(this.state.items,{
 		id:itemId
 	})
-	var newItems=this.state.items
+	let newItems=this.state.items
 	this.setState({
 			items:newItems
 		})
@@ -96,7 +101,7 @@ class Bucketlist extends React.Component{
 		})
 	}
 
-	handleEditBucketlist(item_id){
+	handleEditBucketlistItem(item_id){
 		this.props.itemEditCallback(this.props.data.id,item_id,this.finalizeEditItem)
 	}
 
@@ -112,13 +117,13 @@ class Bucketlist extends React.Component{
 										<a sclassName="secondary-content" onClick={this.handleDone}><i className="material-icons">more_vert</i></a>
 										<i className="material-icons float" data-target="item_model" onClick={this.handleAddItem}>add</i>
 										<i className="material-icons float" onClick={this.handleDeleteBucketlist}>delete</i>
-										<i className="material-icons float" onClick={this.handleEditBucketlist}>edit</i>
+										<i className="material-icons float" onClick={this.handleEditBucketlist} data-target="EditBucketlist">edit</i>
 									</div>
 								</div>
 								<p className="about">{this.props.data.description}</p>
 							</span>
 							
-							<BucketListItems data={this.state.items} bucketlist={this.props.data.id} deleteFunc={this.handleItemDelete} editFunc={this.handleEditBucketlist}/>
+							<BucketListItems data={this.state.items} bucketlist={this.props.data.id} deleteFunc={this.handleItemDelete} editFunc={this.handleEditBucketlistItem}/>
 						</div>
 					</div>
 				</div>
