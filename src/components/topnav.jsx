@@ -7,7 +7,7 @@ class Topnav extends React.Component{
 						<nav>
 							<div className="nav-wrapper">
 								<div className="container">
-									<a href="#" className="brand-logo">BucketlistFairy</a>
+									<a href="#" className="brand-logo">Bucketlist Fairy</a>
 									<ul id="topNave" className="right hide-on-med-and-down">
 										{this.props.children}
 									</ul>
