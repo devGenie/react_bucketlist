@@ -47,25 +47,27 @@ class BucketlistForm extends React.Component{
 	}
 	render(){
 		return(
-			<form className="modal" id="activityModal" onSubmit={this.handleSubmit}>
-				<h4 className="modal-header center">
-					New Bucketlist
-				</h4>
+			<div className="modal" id="activityModal">
+				<form onSubmit={this.handleSubmit}>
+					<div className="modal-content">
+						<h4 className="header2">
+							New Bucketlist
+						</h4>
 
-				<div className="modal-content">
-					<FieldWrapper Label="Name">
-						<input type="text" name="name" id="name" className="validate" onChange={this.handleChange}/>			
-					</FieldWrapper>
+						<FieldWrapper Label="Name">
+							<input placeholder="Name of bucketlist" type="text" name="name" id="name" className="validate" onChange={this.handleChange}/>			
+						</FieldWrapper>
 
-					<FieldWrapper Label="story">
-						<textarea name="description" onChange={this.handleChange}></textarea>
-					</FieldWrapper>
+						<FieldWrapper>
+							<textarea placeholder="Description" name="description" onChange={this.handleChange}></textarea>
+						</FieldWrapper>
 
-					<FieldWrapper extraz="center">
-						<button className="btn">Add</button>
-					</FieldWrapper>
-				</div>
-			</form>
+						<FieldWrapper extraz="right">
+							<button className="btn">Create Bucketlist</button>
+						</FieldWrapper>
+					</div>
+				</form>
+			</div>
 			)}
 }
 
