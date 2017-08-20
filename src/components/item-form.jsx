@@ -44,21 +44,21 @@ class ItemForm extends React.Component{
 
 	render(){
 		return(
-			<form className="modal" id="item_model" method="POST" onSubmit={this.handleSubmit}>
-				<h4 className="modal-header center">
-					Add Item
-				</h4>
+			<div id="item_model" className="modal">
+				<form className="modal-content" method="POST" onSubmit={this.handleSubmit}>
+					<h4 className="header2">
+						Add Item
+					</h4>
 
-				<div className="modal-content">
 					<FieldWrapper Label="Name">
-						<input type="text" name="name" id="item_name" className="validate" onChange={this.handleChange}/>
+						<input placeholder="Name of bucketlist item" type="text" name="name" id="item_name" className="validate" onChange={this.handleChange}/>
 					</FieldWrapper>			
-				</div>
 
-				<FieldWrapper extraz="center">
-					<button className="btn" type='submit'>Add</button>
-				</FieldWrapper>
-			</form>
+					<FieldWrapper extraz="right">
+						<button className="btn" type='submit'>Add</button>
+					</FieldWrapper>
+				</form>
+			</div>
 		)
 	}
 }
