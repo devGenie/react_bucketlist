@@ -10,6 +10,7 @@ form{
 
 .btn{
 	border-radius: 0px !important;
+	margin-bottom:5px !important;
 }
 
 .header2{
@@ -140,7 +141,7 @@ form{
 	color:black;
 }
 
-#activityModal textarea{
+#activityModal textarea,#EditBucketlist textarea{
 	height:250px !important;
 }
 
