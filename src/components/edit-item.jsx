@@ -60,7 +60,7 @@ class EditItem extends React.Component{
 						<input placeholder="Name of bucketlist item" type="text" name="name" id="item_name" className="validate" onChange={this.handleChange}/>
 					</FieldWrapper>			
 
-					<FieldWrapper extraz="center">
+					<FieldWrapper extraz="right">
 						<button className="btn" type='submit'>Edit</button>
 					</FieldWrapper>
 				</form>
