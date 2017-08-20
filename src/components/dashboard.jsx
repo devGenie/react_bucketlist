@@ -4,6 +4,7 @@ import BucketList from './bucketlist';
 import BucketListForm from './bucketlist-form';
 import ItemForm from './item-form';
 import EditItem from './edit-item';
+import EditBucketlist from './edit-bucketlist';
 import _ from 'lodash';
 
 class AddButton extends React.Component{
@@ -30,8 +31,8 @@ class BucketLists extends React.Component{
 	render(){
 		return(
 				<div className='row'>
-					{this.props.data.map((dataPoint)=>{
-						return <BucketList data={dataPoint} formCallback={this.props.formCallback} deleteHandle={this.props.handleDelete} itemEditCallback={this.props.itemEditCallback}/>
+					{this.props.data.map((dataPoint,index)=>{
+						return <BucketList key={index} data={dataPoint} formCallback={this.props.formCallback} deleteHandle={this.props.handleDelete} itemEditCallback={this.props.itemEditCallback}/>
 					})}
 				</div>
 			)
@@ -47,7 +48,7 @@ class DashBoard extends React.Component{
 		this.editedItem='';
 		this.handleItemEdit=this.handleItemEdit.bind(this)
 		this.bucketlistHandler=this.bucketlistHandler.bind(this)
-		this.handleItemFormCall=this.handleItemFormCall.bind(this)
+		this.registerCaller=this.registerCaller.bind(this)
 		this.handleFetchCaller=this.handleFetchCaller.bind(this)
 		this.onComplete=this.onComplete.bind(this)
 		this.updateOnDelete=this.updateOnDelete.bind(this)
@@ -83,7 +84,7 @@ class DashBoard extends React.Component{
 		this.caller_func(data)
 	}
 
-	handleItemFormCall(bucketlist,caller_func){
+	registerCaller(bucketlist,caller_func){
 		this.caller=bucketlist
 		this.caller_func=caller_func
 	}
@@ -123,10 +124,11 @@ class DashBoard extends React.Component{
 							<AddButton/>
 						</div>
 
-						<BucketLists data={this.state.bucketlists} itemEditCallback={this.handleItemEdit} formCallback={this.handleItemFormCall} handleDelete={this.updateOnDelete}/>
+						<BucketLists data={this.state.bucketlists} itemEditCallback={this.handleItemEdit} formCallback={this.registerCaller} handleDelete={this.updateOnDelete}/>
 					</div>
 					<BucketListForm handler={this.bucketlistHandler}/>
 					<ItemForm caller={this.handleFetchCaller} onComplete={this.onComplete}/>
+					<EditBucketlist caller={this.handleFetchCaller} onComplete={this.onComplete}/>
 					<EditItem caller={this.state.editedItem}/>
 				</div>
 			)}
