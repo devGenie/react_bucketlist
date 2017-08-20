@@ -12,7 +12,6 @@ class EditBucketlist extends React.Component{
 	handleSubmit(event){
 		event.preventDefault();
 		let url="https://bucketapi.herokuapp.com/api/v1/bucketlists/"+this.props.caller();
-		alert(url)
 		fetch(url,
 			  {
 			  	headers:{
@@ -26,7 +25,6 @@ class EditBucketlist extends React.Component{
 			  	})
 			  }).then((response) => response.json())
 				.then((jsonResponse) => {
-					alert(JSON.stringify(jsonResponse))
 					if(jsonResponse.status == 'success'){
 						this.props.onComplete(jsonResponse.data)
 					}else{
