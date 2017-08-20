@@ -14,13 +14,19 @@ class BucketListItems extends React.Component{
 		this.props.editFunc(item_id)
 	}
 	render(){
-		return(
-				<ul className="bkitems">
-					{this.props.data.map((item,index)=>{
-						return <BucketListItem data={item} bucketlist={this.props.bucketlist} itemIndex={index} onEdit={this.props.editFunc} onDelete={this.props.deleteFunc}/> 
-					})}
-				</ul>
-			)
+		if(this.props.data.length>0){
+			return(
+					<ul className="bkitems">
+						{this.props.data.map((item,index)=>{
+							return <BucketListItem data={item} bucketlist={this.props.bucketlist} itemIndex={index} onEdit={this.props.editFunc} onDelete={this.props.deleteFunc}/> 
+						})}
+					</ul>
+				)
+		}else{
+			return(<ul className="bkitems">
+						<BucketListItem itemIndex={null} data={{name:'Items not found, Add some',complete_status:null,date_completed:null}}/>
+					</ul>)
+		}
 	}
 }
 
