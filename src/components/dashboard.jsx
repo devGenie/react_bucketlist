@@ -5,6 +5,7 @@ import BucketListForm from './bucketlist-form';
 import ItemForm from './item-form';
 import EditItem from './edit-item';
 import EditBucketlist from './edit-bucketlist';
+import Spinner from './notifications/spinner';
 import Search from './search';
 import _ from 'lodash';
 
@@ -43,7 +44,7 @@ class BucketLists extends React.Component{
 class DashBoard extends React.Component{
 	constructor(props){
 		super(props)
-		this.state={bucketlists:[],
+		this.state={spinner:'show',bucketlists:[],
 					editedItem:{bucketlist:'',item:{id:'',name:''},callback:''},
 					editedBucketlist:{name:'',description:''}}
 		this.caller=''
@@ -57,6 +58,7 @@ class DashBoard extends React.Component{
 	}
 
 	componentDidMount(){
+		this.setState({spinner:'show'})
 		fetch("https://bucketapi.herokuapp.com/api/v1/bucketlists/",
 			   {headers:{
 			   		Authorization:sessionStorage.getItem('auth')
@@ -73,6 +75,7 @@ class DashBoard extends React.Component{
 			else{
 				//alert(jsonResponse.message);
 			}
+			this.setState({spinner:'hide'})
 		})
 	}
 
@@ -123,12 +126,16 @@ class DashBoard extends React.Component{
 				<div>
 					<Topnav/>
 					<div className='container'>
-						<Search/>
 						<div className="row" id="bklist_controller">
 							<AddButton/>
 						</div>
-
-						<BucketLists data={this.state.bucketlists} itemEditCallback={this.handleItemEdit} formCallback={this.registerCaller} handleDelete={this.updateOnDelete}/>
+						<Search/>
+						<Spinner status={this.state.spinner}/>
+						<BucketLists data={this.state.bucketlists} 
+									 itemEditCallback={this.handleItemEdit} 
+									 formCallback={this.registerCaller} 
+									 handleDelete={this.updateOnDelete}
+						/>
 					</div>
 					<BucketListForm handler={this.bucketlistHandler}/>
 					<ItemForm caller={this.handleFetchCaller} onComplete={this.onComplete}/>
