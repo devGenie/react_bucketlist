@@ -5,6 +5,7 @@ import BucketListForm from './bucketlist-form';
 import ItemForm from './item-form';
 import EditItem from './edit-item';
 import EditBucketlist from './edit-bucketlist';
+import Search from './search';
 import _ from 'lodash';
 
 class AddButton extends React.Component{
@@ -122,6 +123,7 @@ class DashBoard extends React.Component{
 				<div>
 					<Topnav/>
 					<div className='container'>
+						<Search/>
 						<div className="row" id="bklist_controller">
 							<AddButton/>
 						</div>
