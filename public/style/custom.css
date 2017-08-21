@@ -231,7 +231,7 @@ form{
 	margin-bottom: 5px;
 	border: 1px solid #e2e2e2;
 	padding:5px !important;
-	min-height:60px !important;
+	min-height:65px !important;
 	height: auto !important;
 	background-color: #fafafa !important;
 	border-radius: 2px !important;
@@ -325,6 +325,12 @@ nav{
 	color: #85888c;
 }
 
+.loader{
+	position: absolute;
+	top:50% !important;
+	left:45% !important;
+}
+
 .pending{
 	color:#5B4205 !important;
 }
@@ -340,4 +346,10 @@ nav{
 	margin-bottom: 0px !important;
 	color:white !important;
 	padding:10px !important;
+}
+
+.loading_summon{
+	font-size:13px !important;
+	font-weight: bold;
+	color:#368BC1 !important;
 }
