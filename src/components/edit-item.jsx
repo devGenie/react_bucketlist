@@ -4,15 +4,22 @@ import FieldWrapper from './FieldWrapper';
 class EditItem extends React.Component{
 	constructor(props){
 		super(props)
-		this.state={name:''}
+		this.state={bucketlist:this.props.caller.bucketlist,
+					item:this.props.caller.item.id,
+					name:this.props.caller.item.name,
+					callback:this.props.caller.callback}
 		this.handleSubmit=this.handleSubmit.bind(this)
 		this.handleChange=this.handleChange.bind(this)
+	}
+
+	componentWillReceiveProps(newProps){
+		this.setState({name:newProps.caller.item.name})
 	}
 
 	handleSubmit(event){
 		event.preventDefault();
 		let url ="https://bucketapi.herokuapp.com/api/v1/bucketlists/";
-		let itemsUrl=url+this.props.caller.bucketlist+"/items/"+this.props.caller.item;
+		let itemsUrl=url+this.state.bucketlist+"/items/"+this.state.item.id;
 		console.log(itemsUrl)
 		fetch(itemsUrl,
 			   {headers:{
@@ -27,7 +34,7 @@ class EditItem extends React.Component{
 		.then((jsonResponse)=>{
 			console.log(jsonResponse)
 			if(jsonResponse.status=='success'){	
-				this.props.caller.callback(jsonResponse.data)
+				this.state.callback(jsonResponse.data)
 				//alert(JSON.stringify(jsonResponse))
 			}
 			else{
@@ -57,7 +64,7 @@ class EditItem extends React.Component{
 					</h4>
 
 					<FieldWrapper Label="Name">
-						<input placeholder="Name of bucketlist item" type="text" name="name" id="item_name" className="validate" onChange={this.handleChange}/>
+						<input value={this.state.name} placeholder="Name of bucketlist item" type="text" name="name" id="item_name" className="validate" onChange={this.handleChange}/>
 					</FieldWrapper>			
 
 					<FieldWrapper extraz="right">
