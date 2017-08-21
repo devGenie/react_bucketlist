@@ -42,10 +42,9 @@ class BucketLists extends React.Component{
 class DashBoard extends React.Component{
 	constructor(props){
 		super(props)
-		this.state={bucketlists:[],editedItem:''}
+		this.state={bucketlists:[],editedItem:'',editedBucketlist:{name:'',description:''}}
 		this.caller=''
 		this.caller_func=''
-		this.editedItem='';
 		this.handleItemEdit=this.handleItemEdit.bind(this)
 		this.bucketlistHandler=this.bucketlistHandler.bind(this)
 		this.registerCaller=this.registerCaller.bind(this)
@@ -85,7 +84,9 @@ class DashBoard extends React.Component{
 	}
 
 	registerCaller(bucketlist,caller_func){
-		this.caller=bucketlist
+		this.caller=bucketlist.id
+		this.setState({
+			editedBucketlist:{name:bucketlist.name,description:bucketlist.description}})
 		this.caller_func=caller_func
 	}
 
@@ -96,7 +97,6 @@ class DashBoard extends React.Component{
 
 	handleItemEdit(bucketlist_id,item,callback){
 		this.caller=bucketlist_id
-		this.editedItem=item;
 		this.caller_func=callback;
 		this.setState({
 			editedItem:{bucketlist:bucketlist_id,item:item,callback:callback}
@@ -128,7 +128,7 @@ class DashBoard extends React.Component{
 					</div>
 					<BucketListForm handler={this.bucketlistHandler}/>
 					<ItemForm caller={this.handleFetchCaller} onComplete={this.onComplete}/>
-					<EditBucketlist caller={this.handleFetchCaller} onComplete={this.onComplete}/>
+					<EditBucketlist caller={this.handleFetchCaller} onComplete={this.onComplete} editing={this.state.editedBucketlist}/>
 					<EditItem caller={this.state.editedItem}/>
 				</div>
 			)}
