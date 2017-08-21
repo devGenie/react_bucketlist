@@ -104,8 +104,8 @@ class Bucketlist extends React.Component{
 		})
 	}
 
-	handleEditBucketlistItem(item_id){
-		this.props.itemEditCallback(this.state.data.id,item_id,this.finalizeEditItem)
+	handleEditBucketlistItem(item){
+		this.props.itemEditCallback(this.state.data.id,item,this.finalizeEditItem)
 	}
 
 	render(){
