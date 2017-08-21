@@ -42,7 +42,9 @@ class BucketLists extends React.Component{
 class DashBoard extends React.Component{
 	constructor(props){
 		super(props)
-		this.state={bucketlists:[],editedItem:'',editedBucketlist:{name:'',description:''}}
+		this.state={bucketlists:[],
+					editedItem:{bucketlist:'',item:{id:'',name:''},callback:''},
+					editedBucketlist:{name:'',description:''}}
 		this.caller=''
 		this.caller_func=''
 		this.handleItemEdit=this.handleItemEdit.bind(this)
