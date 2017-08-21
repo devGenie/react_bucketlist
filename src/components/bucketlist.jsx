@@ -49,7 +49,7 @@ class Bucketlist extends React.Component{
 	}
 
 	handleAddItem(){
-		this.props.formCallback(this.props.data.id,this.completeAction)
+		this.props.formCallback(this.props.data,this.completeAction)
 	}
 
 	finalizeEditItem(data){
