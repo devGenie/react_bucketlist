@@ -9,6 +9,11 @@ class EditBucketlist extends React.Component{
 		this.state={name:'',description:''}
 	}
 
+	componentWillReceiveProps(newProps){
+		this.setState({name:newProps.editing.name,description:newProps.editing.description})
+		//alert(JSON.stringify(this.state))
+	}
+
 	handleSubmit(event){
 		event.preventDefault();
 		let url="https://bucketapi.herokuapp.com/api/v1/bucketlists/"+this.props.caller();
@@ -52,11 +57,11 @@ class EditBucketlist extends React.Component{
 						</h4>
 
 						<FieldWrapper Label="Name">
-							<input placeholder="Name of bucketlist" type="text" name="name" id="name" className="validate" onChange={this.handleChange}/>			
+							<input placeholder="Name of bucketlist" value={this.state.name} type="text" name="name" id="name" className="validate" onChange={this.handleChange}/>			
 						</FieldWrapper>
 
 						<FieldWrapper>
-							<textarea placeholder="Description" name="description" onChange={this.handleChange}></textarea>
+							<textarea placeholder="Description" value={this.state.description} name="description" onChange={this.handleChange}></textarea>
 						</FieldWrapper>
 
 						<FieldWrapper extraz="right">
