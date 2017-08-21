@@ -1,6 +1,7 @@
 import React from 'react';
 import BucketListItems from './bucketlist-items';
 import ItemForm from './item-form';
+import EditBucketlist from './edit-bucketlist';
 import _ from 'lodash'
 
 class Bucketlist extends React.Component{
@@ -61,7 +62,8 @@ class Bucketlist extends React.Component{
 	}
 
 	handleEditBucketlist(){
-		this.props.formCallback(this.props.data.id,this.finalizeEditBucketlist);
+		let bucketlistData={id:this.props.data.id,name:this.props.data.name,description:this.props.data.description}
+		this.props.formCallback(bucketlistData,this.finalizeEditBucketlist);
 		//this.props.bucketlistEditCallback({bucketlist:this.props.data.id,item:itemId,callBack:this.finalizeEditItem})
 	}
 
