@@ -48,7 +48,7 @@ class BucketListItem extends React.Component{
 	}
 
 	handleEdit(){
-		this.props.onEdit(this.props.data.id)
+		this.props.onEdit({id:this.props.data.id,name:this.props.data.name})
 	}
 
 	handleDone(){
