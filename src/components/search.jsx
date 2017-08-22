@@ -9,9 +9,28 @@ class Search extends React.Component{
 
 	search(event){
 		event.preventDefault()
-		let searchTerm=event.target.value
+		let search_term=event.target.value;
+		fetch("https://bucketapi.herokuapp.com/api/v1/bucketlists/?search="+search_term,
+			   {headers:{
+			   		Authorization:sessionStorage.getItem('auth')
+			   },
+			   "method":"GET"}
+		).then((response)=>response.json())
+		.then((jsonResponse)=>{
+			let res=JSON.stringify(jsonResponse);
+			console.log(res)
+			if(jsonResponse.status=='success'){
+				//this.setState({
+				//	bucketlists:jsonResponse.data
+				//});
+			}
+			else{
+				//alert(jsonResponse.message);
+			}
+			//this.setState({spinner:'hide'})
+		})
 
-		console.log(searchTerm)
+		//console.log(searchTerm)
 	}
 
 	render(){
