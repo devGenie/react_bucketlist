@@ -13,13 +13,18 @@ class EditItem extends React.Component{
 	}
 
 	componentWillReceiveProps(newProps){
-		this.setState({name:newProps.caller.item.name})
+		this.setState({name:newProps.caller.item.name,
+					   id:newProps.caller.item.id,
+					   bucketlist:newProps.caller.bucketlist,
+					   callback:newProps.caller.callback
+					})
 	}
 
 	handleSubmit(event){
 		event.preventDefault();
+		alert(JSON.stringify(this.state))
 		let url ="https://bucketapi.herokuapp.com/api/v1/bucketlists/";
-		let itemsUrl=url+this.state.bucketlist+"/items/"+this.state.item.id;
+		let itemsUrl=url+this.state.bucketlist+"/items/"+this.state.id;
 		console.log(itemsUrl)
 		fetch(itemsUrl,
 			   {headers:{
