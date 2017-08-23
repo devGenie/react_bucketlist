@@ -10,6 +10,9 @@ form{
 
 .searchbar{
 	padding:0px !important;
+	position: relative;
+	display: flex;
+
 }
 
 .searchbar input{
@@ -18,6 +21,10 @@ form{
 	padding-right: 5px !important;
 	width:100% !important;
 	border:0px transparent !important;
+	background-color: #717d8a !important;
+	border-radius: 0px !important;
+	height: 35px !important;
+	margin-top: 15px !important;
 }
 
 .searchbar input:focus{
@@ -26,9 +33,6 @@ form{
 }
 
 .searchbar .search-icon{
-	position: absolute;
-	top: 30%;
-	right: 10px;
 	cursor: pointer;
 	font-size: 24px !important;
 }
@@ -224,6 +228,30 @@ form{
 .material-icons{
 	font-size:15px !important;
 	cursor: pointer;
+}
+
+.search-result{
+	padding:5px !important;
+	margin:5px !important;
+	background-color: #fafafa !important;
+	border-radius: 2px !important;
+	font-size: 13px !important;
+    font-weight: bold;
+    color: #5b5d5f;
+    text-transform: capitalize;
+    text-overflow: ellipsis;
+    line-height: 16px !important;font-size;
+    border-bottom:1px solid #bbb8b8 !important;
+
+}
+
+.search-results{
+	height:0px auto;
+	position: absolute !important;
+	top:100% !important;
+	z-index: 100;
+	width:100% !important;
+	background-color: #fafafa !important;
 }
 
 .items{
