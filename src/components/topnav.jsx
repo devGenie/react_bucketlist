@@ -1,4 +1,5 @@
 import React from 'react';
+import Search from './search';
 
 class Topnav extends React.Component{
 	render(){
@@ -9,7 +10,7 @@ class Topnav extends React.Component{
 								<div className="container">
 									<a href="#" className="brand-logo">Bucketlist Fairy</a>
 									<ul id="topNave" className="right hide-on-med-and-down">
-										{this.props.children}
+										<Search/>
 									</ul>
 								</div>
 							</div>
