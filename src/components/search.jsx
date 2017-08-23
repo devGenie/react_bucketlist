@@ -1,34 +1,18 @@
 import React from 'react';
 
 
-class SearchResults extends React.Component{
-	constructor(props){
-		super(props)
-		this.state={results:[]}
-	}
-
-	componentWillReceiveProps(results){
-		this.setState({
-			results:results.results
-		})
-	}
-
-	render(){
-		return(
-				<div className='search-results'>
-					{this.state.results.map((result,index)=>{
-						return(
-								<div className='search-result'>
-									{result.name}
-								</div>
-							)
-						}
-					)}
-				</div>
-
-			)
-	}
-}
+const SearchResults=({results})=>(
+	<div className='search-results'>
+		{results.map((result,index)=>{
+			return(
+					<div className='search-result'>
+						{result.name}
+					</div>
+				)
+			}
+		)}
+	</div>
+)
 
 class Search extends React.Component{
 	constructor(props){
