@@ -1,18 +1,41 @@
 import React from 'react';
 
+class SearchResults extends React.Component{
+	constructor(props){
+		super(props)
+		this.state={results:[],display:{}}
+		this.show=this.show.bind(this)
+	}
 
-const SearchResults=({results})=>(
-	<div className='search-results'>
-		{results.map((result,index)=>{
-			return(
-					<div className='search-result'>
-						{result.name}
-					</div>
-				)
-			}
-		)}
-	</div>
-)
+	componentWillReceiveProps(results){
+		this.setState({
+			results:results.results
+		})
+	}
+
+	show(result){
+		//alert(JSON.stringify(result))
+		this.setState({display:result})
+		this.props.viewSearch(result)
+		window.$('#view-result').modal('open');
+	}
+
+	render(){
+		return(
+				<div className='search-results'>
+					{this.state.results.map((result,index)=>{
+						return(
+								<div className='search-result' onClick={()=>this.show(result)}>
+									{result.name}
+								</div>
+							)
+						}
+					)}
+				</div>
+
+			)
+	}
+}
 
 class Search extends React.Component{
 	constructor(props){
@@ -52,7 +75,7 @@ class Search extends React.Component{
 		return(
 			<div className="searchbar">
             		<input placeholder='Search' onChange={this.search} id="search"/>
-            		<SearchResults results={this.state.results}/>
+            		<SearchResults results={this.state.results} viewSearch={this.props.viewSearch} />
           	</div>
 			)
 	}
