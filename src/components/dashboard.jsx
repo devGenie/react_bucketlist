@@ -6,7 +6,9 @@ import ItemForm from './item-form';
 import EditItem from './edit-item';
 import EditBucketlist from './edit-bucketlist';
 import Spinner from './notifications/spinner';
+import ViewResult from './view-result';
 import _ from 'lodash';
+
 
 class AddButton extends React.Component{
 	render(){
@@ -33,6 +35,7 @@ class BucketLists extends React.Component{
 		return(
 				<div className='row'>
 					{this.props.data.map((dataPoint,index)=>{
+						console.log(dataPoint)
 						return <BucketList key={index} data={dataPoint} formCallback={this.props.formCallback} deleteHandle={this.props.handleDelete} itemEditCallback={this.props.itemEditCallback}/>
 					})}
 				</div>
@@ -45,7 +48,10 @@ class DashBoard extends React.Component{
 		super(props)
 		this.state={spinner:'show',bucketlists:[],
 					editedItem:{bucketlist:'',item:{id:'',name:''},callback:''},
-					editedBucketlist:{name:'',description:''}}
+					editedBucketlist:{name:'',description:''},
+					view:{id:'',name:'',description:''}
+				}
+				
 		this.caller=''
 		this.caller_func=''
 		this.handleItemEdit=this.handleItemEdit.bind(this)
@@ -53,7 +59,12 @@ class DashBoard extends React.Component{
 		this.registerCaller=this.registerCaller.bind(this)
 		this.handleFetchCaller=this.handleFetchCaller.bind(this)
 		this.onComplete=this.onComplete.bind(this)
+		this.viewBucketList=this.viewBucketList.bind(this)
 		this.updateOnDelete=this.updateOnDelete.bind(this)
+	}
+
+	viewBucketList(data){
+		this.setState({view:data})
 	}
 
 	componentDidMount(){
@@ -123,7 +134,7 @@ class DashBoard extends React.Component{
 	render(){
 		return(
 				<div>
-					<Topnav/>
+					<Topnav viewSearch={this.viewBucketList}/>
 					<div className='container'>
 						<div className="row" id="bklist_controller">
 							<AddButton/>
@@ -139,6 +150,8 @@ class DashBoard extends React.Component{
 					<ItemForm caller={this.handleFetchCaller} onComplete={this.onComplete}/>
 					<EditBucketlist caller={this.handleFetchCaller} onComplete={this.onComplete} editing={this.state.editedBucketlist}/>
 					<EditItem caller={this.state.editedItem}/>
+					<ViewResult result={this.state.view}/>
+
 				</div>
 			)}
 }
