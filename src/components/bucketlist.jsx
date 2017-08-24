@@ -16,11 +16,17 @@ class Bucketlist extends React.Component{
 		this.handleDeleteBucketlist=this.handleDeleteBucketlist.bind(this);
 		this.finalizeEditItem=this.finalizeEditItem.bind(this);
 		this.finalizeEditBucketlist=this.finalizeEditBucketlist.bind(this);
+		this.loadItems=this.loadItems.bind(this)
 	}
 
-	componentDidMount(){
+	componentWillReceiveProps(newProps){
+		this.setState({data:newProps.data})
+		this.loadItems(newProps.data.id)
+	}
+
+	loadItems(id){
 		let url ="https://bucketapi.herokuapp.com/api/v1/bucketlists/";
-		let itemsUrl=url+this.state.data.id+"/items/";
+		let itemsUrl=url+id+"/items/";
 		fetch(itemsUrl,
 			   {headers:{
 			   		Authorization:sessionStorage.getItem('auth')
@@ -34,9 +40,15 @@ class Bucketlist extends React.Component{
 				});
 			}
 			else{
-				console.log(jsonResponse.message);
+				this.setState({
+					items:[]
+				});
 			}
 		})
+	}
+
+	componentDidMount(){
+		this.loadItems(this.state.data.id)
 	}
 
 	completeAction(result){
