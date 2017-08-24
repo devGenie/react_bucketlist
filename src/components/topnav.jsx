@@ -10,7 +10,7 @@ class Topnav extends React.Component{
 								<div className="container">
 									<a href="#" className="brand-logo">Bucketlist Fairy</a>
 									<ul id="topNave" className="right hide-on-med-and-down">
-										<Search/>
+										<Search viewSearch={this.props.viewSearch}/>
 									</ul>
 								</div>
 							</div>
