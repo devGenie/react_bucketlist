@@ -230,6 +230,30 @@ form{
 	cursor: pointer;
 }
 
+#view-result .modal-content .card{
+	margin:0px !important;
+
+}
+
+.bk_card{
+	max-height: 300px !important;
+	min-height: 300px !important;
+}
+
+#view-result .modal-content{
+	padding:0px !important;
+}
+
+#view-result .bkitems{
+	padding:0px !important;
+	margin-bottom: 0px !important;
+}
+
+#view-result{
+	width: 300px !important;
+	padding:0px !important;
+}
+
 .search-result{
 	padding:5px !important;
 	margin:5px !important;
