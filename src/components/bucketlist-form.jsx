@@ -49,7 +49,7 @@ class BucketlistForm extends React.Component{
 						console.log(JSON.stringify(jsonResponse.data))
 						this.props.handler(jsonResponse.data)
 					}else{
-						alert(JSON.stringify(jsonResponse.message))
+						window.Materialize.toast(jsonResponse.message,4000)
 					}
 					this.setState({
 						progress:'hide',
@@ -57,11 +57,13 @@ class BucketlistForm extends React.Component{
 						name:'',
 						description:''
 					})
+				}).then(()=>{
+					window.$('#activityModal').modal('close');
 				})
 	}
 	render(){
 		return(
-			<div className="modal" id="activityModal">
+			<div className="modal" id="activityModal" ref='activityModal'>
 				<form onSubmit={this.handleSubmit}>
 					<Loading status={this.state.progress}/>
 					<div className="modal-content">
