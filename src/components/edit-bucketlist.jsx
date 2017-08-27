@@ -1,12 +1,13 @@
 import React from 'react';
 import FieldWrapper from './FieldWrapper';
+import Loading from './notifications/loading';
 
 class EditBucketlist extends React.Component{
 	constructor(props){
 		super(props);
 		this.handleSubmit=this.handleSubmit.bind(this)
 		this.handleChange=this.handleChange.bind(this)
-		this.state={name:'',description:''}
+		this.state={name:'',description:'',progress:'hide',button:''}
 	}
 
 	componentWillReceiveProps(newProps){
@@ -35,6 +36,12 @@ class EditBucketlist extends React.Component{
 					}else{
 						alert(JSON.stringify(jsonResponse))
 					}
+				}).then(()=>{
+					this.setState({
+						name:'',
+						description:''
+					})
+					window.$('#EditBucketlist').modal('close');
 				})
 	}
 
@@ -51,6 +58,7 @@ class EditBucketlist extends React.Component{
 		return(
 			<div className="modal" id="EditBucketlist">
 				<form onSubmit={this.handleSubmit}>
+					<Loading status={this.state.progress}/>
 					<div className="modal-content">
 						<h4 className="header2">
 							Edit Bucketlist
