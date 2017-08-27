@@ -1,12 +1,15 @@
 import React from 'react';
 import FieldWrapper from './FieldWrapper';
+import Loading from './notifications/loading';
 
 class BucketlistForm extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
 			name:'',
-			description:''
+			description:'',
+			progress:'hide',
+			button:''
 		}
 		this.handleChange=this.handleChange.bind(this);
 		this.handleSubmit=this.handleSubmit.bind(this);
@@ -24,6 +27,11 @@ class BucketlistForm extends React.Component{
 
 	handleSubmit(event){
 		event.preventDefault();
+		this.setState({
+			progress:'show',
+			button:'disabled'
+		})
+
 		fetch("https://bucketapi.herokuapp.com/api/v1/bucketlists/",
 			  {
 			  	headers:{
@@ -43,27 +51,34 @@ class BucketlistForm extends React.Component{
 					}else{
 						alert(JSON.stringify(jsonResponse.message))
 					}
+					this.setState({
+						progress:'hide',
+						button:'',
+						name:'',
+						description:''
+					})
 				})
 	}
 	render(){
 		return(
 			<div className="modal" id="activityModal">
 				<form onSubmit={this.handleSubmit}>
+					<Loading status={this.state.progress}/>
 					<div className="modal-content">
 						<h4 className="header2">
 							New Bucketlist
 						</h4>
 
 						<FieldWrapper Label="Name">
-							<input placeholder="Name of bucketlist" type="text" name="name" id="name" className="validate" onChange={this.handleChange}/>			
+							<input placeholder="Name of bucketlist" value={this.state.name} type="text" name="name" id="name" className={"validate "+this.state.button} onChange={this.handleChange}/>			
 						</FieldWrapper>
 
 						<FieldWrapper>
-							<textarea placeholder="Description" name="description" onChange={this.handleChange}></textarea>
+							<textarea placeholder="Description" value={this.state.description} name="description" onChange={this.handleChange} className={"validate "+this.state.button}></textarea>
 						</FieldWrapper>
 
 						<FieldWrapper extraz="right">
-							<button className="btn">Create Bucketlist</button>
+							<button className={"btn "+this.state.button}>Create Bucketlist</button>
 						</FieldWrapper>
 					</div>
 				</form>
