@@ -122,7 +122,7 @@ class Bucketlist extends React.Component{
 
 	render(){
 		return(
-				<div className="col s12 m3">
+				<div className="col s12 m4 l3">
 					<div className="card bk_card">
 						<div className="card-content">
 							<span className="card-title">
