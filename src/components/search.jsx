@@ -48,7 +48,7 @@ class Search extends React.Component{
 		event.preventDefault()
 		let search_term=event.target.value;
 		if (search_term.length>0){
-			fetch("https://bucketapi.herokuapp.com/api/v1/bucketlists/?search="+search_term,
+			fetch("https://bucketapi.herokuapp.com/api/v1/bucketlists/?q="+search_term,
 				   {headers:{
 				   		Authorization:sessionStorage.getItem('auth')
 				   },
