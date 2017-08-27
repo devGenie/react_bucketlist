@@ -21,10 +21,10 @@ class BucketListItems extends React.Component{
 				)
 		}else{
 			return(<ul className="bkitems">
-						<img src="../images/empty.png" className="empty-bucketlist"/>
-					</ul>
-				 )
+						<BucketListItem itemIndex={null} data={{name:'Items not found, Add some',complete_status:null,date_completed:null}}/>
+					</ul>)
 		}
 	}
 }
+
 export default BucketListItems;
