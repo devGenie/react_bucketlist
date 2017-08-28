@@ -8,9 +8,14 @@ class Topnav extends React.Component{
 						<nav>
 							<div className="nav-wrapper">
 								<div className="container">
-									<a href="#" className="brand-logo">Bucketlist Fairy</a>
-									<ul id="topNave" className="right hide-on-med-and-down">
-										<Search viewSearch={this.props.viewSearch}/>
+									<a href="#" className="brand-logo col l3">Bucketlist Fairy</a>
+									<ul id="topNave" className="col l9 right hide-on-med-and-down">
+										<li>
+											<Search className="col l6" viewSearch={this.props.viewSearch}/>
+										</li>
+										<li>
+											one
+										</li>
 									</ul>
 								</div>
 							</div>
