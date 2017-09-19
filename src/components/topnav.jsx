@@ -1,7 +1,7 @@
 import React from 'react';
 import Search from './search';
 
-const Topnav = viewSearch => (
+const Topnav = ({viewSearch}) => (
   <div className="navbar-fixed">
     <nav>
       <div className="nav-wrapper">
@@ -14,5 +14,5 @@ const Topnav = viewSearch => (
       </div>
     </nav>
   </div>
-    );
+);
 export default Topnav;
