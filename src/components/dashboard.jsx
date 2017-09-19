@@ -150,7 +150,10 @@ class DashBoard extends React.Component{
 					<ItemForm caller={this.handleFetchCaller} onComplete={this.onComplete}/>
 					<EditBucketlist caller={this.handleFetchCaller} onComplete={this.onComplete} editing={this.state.editedBucketlist}/>
 					<EditItem caller={this.state.editedItem}/>
-					<ViewResult result={this.state.view}/>
+					<ViewResult result={this.state.view}
+								formCallback={this.registerCaller} 
+								deleteHandle={this.updateOnDelete} 
+								itemEditCallback={this.handleItemEdit}/>
 
 				</div>
 			)}
