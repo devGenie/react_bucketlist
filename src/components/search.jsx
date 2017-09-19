@@ -14,7 +14,7 @@ class SearchResults extends React.Component {
   }
 
   show(result) {
-		// alert(JSON.stringify(result))
+	// alert(JSON.stringify(result))
     this.setState({ display: result });
     this.props.viewSearch(result);
     window.$('#view-result').modal('open');
@@ -27,8 +27,8 @@ class SearchResults extends React.Component {
           <div className="search-result" onClick={() => this.show(result)}>
             {result.name}
           </div>
-							),
-					)}
+		),
+		)}
       </div>
 
     );
