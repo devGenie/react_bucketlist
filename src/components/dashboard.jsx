@@ -7,6 +7,7 @@ import EditItem from './edit-item';
 import EditBucketlist from './edit-bucketlist';
 import Spinner from './notifications/spinner';
 import ViewResult from './view-result';
+import Pagination from './pagination';
 import _ from 'lodash';
 
 
@@ -33,11 +34,17 @@ class BucketLists extends React.Component{
 
 	render(){
 		return(
-				<div className='row'>
-					{this.props.data.map((dataPoint,index)=>{
-						console.log(dataPoint)
-						return <BucketList key={index} data={dataPoint} formCallback={this.props.formCallback} deleteHandle={this.props.handleDelete} itemEditCallback={this.props.itemEditCallback}/>
-					})}
+		       	<div>
+					<div className='row'>
+						{this.props.data.map((dataPoint,index)=>{
+							console.log(dataPoint)
+							return <BucketList key={index} data={dataPoint} formCallback={this.props.formCallback} deleteHandle={this.props.handleDelete} itemEditCallback={this.props.itemEditCallback}/>
+						})}
+					</div>
+					<div>
+						<Pagination next="1" previous="2" pages={[1,2,3]}/>
+					
+					</div>
 				</div>
 			)
 	}
@@ -47,6 +54,7 @@ class DashBoard extends React.Component{
 	constructor(props){
 		super(props)
 		this.state={spinner:'show',bucketlists:[],
+					pages:0,
 					editedItem:{bucketlist:'',item:{id:'',name:''},callback:''},
 					editedBucketlist:{name:'',description:''},
 					view:{id:'',name:'',description:''}
@@ -79,7 +87,8 @@ class DashBoard extends React.Component{
 			let res=JSON.stringify(jsonResponse);
 			if(jsonResponse.status=='success'){
 				this.setState({
-					bucketlists:jsonResponse.data
+					bucketlists:jsonResponse.data,
+					pages:jsonResponse.pages
 				});
 			}
 			else{
