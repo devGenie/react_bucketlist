@@ -23,8 +23,7 @@ form{
 	border:0px transparent !important;
 	background-color: #717d8a !important;
 	border-radius: 0px !important;
-	height: 35px !important;
-	margin-top: 15px !important;
+	margin-top: 10px !important;
 }
 
 .searchbar input:focus{
@@ -35,6 +34,12 @@ form{
 .searchbar .search-icon{
 	cursor: pointer;
 	font-size: 24px !important;
+}
+
+.page-container{
+	position: fixed;
+	bottom: 20px !important;
+	text-align: center;
 }
 
 .btn{
@@ -360,6 +365,10 @@ nav{
 	width: 30% !important;
 }
 
+#topNave{
+	display: block !important;
+}
+
 .card .card-content{
 	padding:0px !important;
 }
@@ -381,6 +390,7 @@ nav{
 	position: absolute;
 	top:50% !important;
 	left:45% !important;
+	z-index: 100;
 }
 
 .pending{
@@ -411,6 +421,7 @@ nav{
 	float:left !important;
 	padding:5px !important;
 	margin:2px !important;
+	height: 28px !important;
 	min-width: 35px !important;
 	text-align: center !important;
 	border:1px solid #e2e2e2 !important;
