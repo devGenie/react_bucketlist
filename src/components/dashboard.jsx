@@ -37,12 +37,11 @@ class BucketLists extends React.Component{
 		       	<div>
 					<div className='row'>
 						{this.props.data.map((dataPoint,index)=>{
-							console.log(dataPoint)
 							return <BucketList key={index} data={dataPoint} formCallback={this.props.formCallback} deleteHandle={this.props.handleDelete} itemEditCallback={this.props.itemEditCallback}/>
 						})}
 					</div>
 					<div>
-						<Pagination next="1" previous="2" pages={[1,2,3]}/>
+						<Pagination next="1" previous="2" loadPage={this.props.load} pages={this.props.pages}/>
 					
 					</div>
 				</div>
@@ -67,8 +66,10 @@ class DashBoard extends React.Component{
 		this.registerCaller=this.registerCaller.bind(this)
 		this.handleFetchCaller=this.handleFetchCaller.bind(this)
 		this.onComplete=this.onComplete.bind(this)
-		this.viewBucketList=this.viewBucketList.bind(this)
+		this.searchResults=this.searchResults.bind(this)
 		this.updateOnDelete=this.updateOnDelete.bind(this)
+		this.loadData=this.loadData.bind(this)
+		this.loadPage=this.loadPage.bind(this)
 	}
 
 	viewBucketList(data){
@@ -76,16 +77,24 @@ class DashBoard extends React.Component{
 	}
 
 	componentDidMount(){
+		this.loadData()
+	}
+
+	loadPage(page){
+		this.loadData(page)
+	}
+
+	loadData(page=1){
 		this.setState({spinner:'show'})
-		fetch("https://bucketapi.herokuapp.com/api/v1/bucketlists/",
+		fetch("https://bucketapi.herokuapp.com/api/v1/bucketlists/?page="+page+"&pagesize=8",
 			   {headers:{
 			   		Authorization:sessionStorage.getItem('auth')
 			   },
 			   "method":"GET"}
 		).then((response)=>response.json())
 		.then((jsonResponse)=>{
-			let res=JSON.stringify(jsonResponse);
-			if(jsonResponse.status=='success'){
+			if(jsonResponse.status==='success'){
+				console.log("pages"+jsonResponse.pages)
 				this.setState({
 					bucketlists:jsonResponse.data,
 					pages:jsonResponse.pages
@@ -96,6 +105,14 @@ class DashBoard extends React.Component{
 			}
 			this.setState({spinner:'hide'})
 		})
+	}
+
+	searchResults(bucketlists){
+		if(bucketlists.length>0){
+			this.setState({
+			bucketlists:bucketlists
+			})
+		}
 	}
 
 	bucketlistHandler(bucketlist){
@@ -143,16 +160,18 @@ class DashBoard extends React.Component{
 	render(){
 		return(
 				<div>
-					<Topnav viewSearch={this.viewBucketList}/>
+					<Topnav searchResults={this.searchResults}/>
 					<div className='container'>
 						<div className="row" id="bklist_controller">
 							<AddButton/>
 						</div>
 						<Spinner status={this.state.spinner}/>
-						<BucketLists data={this.state.bucketlists} 
+						<BucketLists data={this.state.bucketlists}
+									 pages={this.state.pages} 
 									 itemEditCallback={this.handleItemEdit} 
 									 formCallback={this.registerCaller} 
 									 handleDelete={this.updateOnDelete}
+									 load={this.loadPage}
 						/>
 					</div>
 					<BucketListForm handler={this.bucketlistHandler}/>
