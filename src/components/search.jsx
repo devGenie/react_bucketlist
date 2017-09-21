@@ -57,9 +57,8 @@ class Search extends React.Component {
 
   render() {
     return (
-      <div className="searchbar">
+      <div className="searchbar z-depth-5 search">
         <input placeholder="Search" onChange={this.search} id="search" />
-        <SearchResults results={this.state.results} viewSearch={this.props.viewSearch} />
       </div>
     );
   }
