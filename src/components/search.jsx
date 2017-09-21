@@ -7,12 +7,6 @@ class SearchResults extends React.Component {
     this.show = this.show.bind(this);
   }
 
-  componentWillReceiveProps(results) {
-    this.setState({
-      results: results.results,
-    });
-  }
-
   show(result) {
 	// alert(JSON.stringify(result))
     this.setState({ display: result });
@@ -46,7 +40,7 @@ class Search extends React.Component {
     event.preventDefault();
     const search_term = event.target.value;
     if (search_term.length > 0) {
-      fetch(`https://bucketapi.herokuapp.com/api/v1/bucketlists/?search=${search_term}`,
+      fetch(`https://bucketapi.herokuapp.com/api/v1/bucketlists/?q=${search_term}`,
 				   { headers: {
 				   		Authorization: sessionStorage.getItem('auth'),
 				   },
@@ -54,15 +48,8 @@ class Search extends React.Component {
 			).then(response => response.json())
 			.then((jsonResponse) => {
   if (jsonResponse.status == 'success') {
-    this.setState({
-      results: jsonResponse.data,
-    });
-  }				else {
-    this.setState({
-      results: [],
-    });
-  }
-				// this.setState({spinner:'hide'})
+    this.props.searchResults(jsonResponse.data)
+  }			// this.setState({spinner:'hide'})
 });
     }
 		// console.log(searchTerm)
