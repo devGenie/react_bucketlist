@@ -2,14 +2,14 @@ import React from 'react';
 
 const Pagination = (props) =>{
     return(
-           <div className="page-container">
-                <div className="previous page">Prev</div>
+           <ul className="page-container pagianation">
+                <li className="disabled page"><a href="#!"><i className="material-icons">chevron_left</i></a></li>
                     { Array.apply(null,Array(props.pages)).map((item,i)=>{
-                        return <div className="page" onClick={event=>props.loadPage(i+1)}>{i+1}</div>
+                        return <li className="page disabled" onClick={event=>props.loadPage(i+1)}>{i+1}</li>
                         })
                     }
-                <div className="next page">Next</div>
-           </div>
+                <li className="disabled page"><a href="#!"><i className="material-icons">chevron_right</i></a></li>
+           </ul>
     )
 }
 
