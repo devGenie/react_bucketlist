@@ -15,6 +15,22 @@ form{
 
 }
 
+#navbar-drop{
+	margin-top: 10px !important;
+	height: 45px !important;
+	text-align: right !important;
+}
+
+#user-dropdown{
+	padding: 0px !important;
+	vertical-align: middle;
+}
+
+#dropdown-btn{
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+
 .searchbar input{
 	margin:0px !important;
 	padding-left: 5px !important;
