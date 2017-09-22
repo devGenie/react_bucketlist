@@ -1,11 +1,13 @@
 import React from 'react';
 import BucketListItems from './bucketlist-items';
-import _ from 'lodash'
+import _ from 'lodash';
+import Paginate from './items-pagination';
+let url ="https://bucketapi.herokuapp.com/api/v1/bucketlists/";
 
 class Bucketlist extends React.Component{
 	constructor(props){
 		super(props)
-		this.state={items:[],data:this.props.data}
+		this.state={items:[],data:this.props.data,next:'',previous:''}
 		this.handleAddItem=this.handleAddItem.bind(this)
 		this.handleEditBucketlist=this.handleEditBucketlist.bind(this)
 		this.completeAction=this.completeAction.bind(this)
@@ -19,12 +21,12 @@ class Bucketlist extends React.Component{
 
 	componentWillReceiveProps(newProps){
 		this.setState({data:newProps.data})
-		this.loadItems(newProps.data.id)
+		let itemsUrl=url+newProps.data.id+"/items/";
+		this.loadItems(itemsUrl)
 	}
 
-	loadItems(id){
-		let url ="https://bucketapi.herokuapp.com/api/v1/bucketlists/";
-		let itemsUrl=url+id+"/items/";
+	loadItems(itemsUrl){
+		console.log(itemsUrl)
 		fetch(itemsUrl,
 			   {headers:{
 			   		Authorization:sessionStorage.getItem('auth')
@@ -32,9 +34,11 @@ class Bucketlist extends React.Component{
 			   "method":"GET"}
 		).then((response)=>response.json())
 		.then((jsonResponse)=>{
-			if(jsonResponse.status==='success'){
+			if(jsonResponse.status === 'success'){
 				this.setState({
-					items:jsonResponse.data
+					items:jsonResponse.data,
+					next:jsonResponse.next,
+					previous:jsonResponse.previous
 				});
 			}
 			else{
@@ -46,16 +50,16 @@ class Bucketlist extends React.Component{
 	}
 
 	componentDidMount(){
-		this.loadItems(this.state.data.id)
+		let itemsUrl=url+this.props.data.id+"/items/";
+		this.loadItems(itemsUrl)
 	}
 
 	completeAction(result){
-		let newVar=this.state.items.slice()
-		newVar.push(result)
-
-		this.setState({items:newVar})
-
-		console.log(this.state.items)
+		if(this.state.items.length>3){
+			let newVar=this.state.items.slice()
+			newVar.push(result)
+			this.setState({items:newVar})
+		}
 	}
 
 	handleAddItem(){
@@ -137,6 +141,7 @@ class Bucketlist extends React.Component{
 							
 							<BucketListItems data={this.state.items} bucketlist={this.state.data.id} deleteFunc={this.handleItemDelete} editFunc={this.handleEditBucketlistItem}/>
 						</div>
+						<Paginate next={this.state.next} previous={this.state.previous} trigger={this.loadItems}/>
 					</div>
 				</div>
 			)
