@@ -116,9 +116,11 @@ class DashBoard extends React.Component{
 	}
 
 	bucketlistHandler(bucketlist){
-		this.setState({
+		if(this.state.bucketlists.length<8){
+			this.setState({
 			bucketlist:this.state.bucketlists.push(bucketlist)
 		})
+		}
 	}
 
 	onComplete(data){

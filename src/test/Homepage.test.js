@@ -27,7 +27,7 @@ describe('<LoginForm/>',()=>{
 
 	it('should have correct input field types',()=>{
 		const wrapper = shallow(<LoginForm/>);
-		wrapper.find("#login_username").should.have.attr('type','text');
+		wrapper.find("#login_username").should.have.attr('type','email');
 		wrapper.find("#login_password").should.have.attr('type','password')
 	})
 
@@ -69,17 +69,17 @@ describe('<LoginForm/>',()=>{
 describe('<RegisterForm', () =>{
 	it('should have five input fields', ()=>{
 		const wrapper=shallow(<RegisterForm/>);
-		expect(wrapper.find('input')).to.have.length(5);
+		expect(wrapper.find('input')).to.have.length(4);
 	});
 
-	it('should have two password field', ()=>{
+	it('should have a password field', ()=>{
 		const wrapper = shallow(<RegisterForm/>);
-		expect(wrapper.find({type:'password'})).to.have.length(2);
+		expect(wrapper.find({type:'password'})).to.have.length(1);
 	});
 
-	it('should have three input fields',()=>{
+	it('should have two text input fields',()=>{
 		const wrapper = shallow(<RegisterForm/>);
-		expect(wrapper.find({type:'text'})).to.have.length(3);
+		expect(wrapper.find({type:'text'})).to.have.length(2);
 	});
 
 	it('should be able to submit',()=>{
