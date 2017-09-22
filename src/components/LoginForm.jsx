@@ -1,6 +1,5 @@
 import React from 'react';
 import FieldWrapper from './FieldWrapper';
-import {Redirect} from 'react-router-dom';
 import Loading from './notifications/loading';
 
 class LoginForm extends React.Component {
@@ -32,7 +31,7 @@ class LoginForm extends React.Component {
 					 .then((response) => response.json())
 					 .then((jsonResponse) => {
 					 	console.log(JSON.stringify(jsonResponse));
-					 	if (jsonResponse.status=='success'){
+					 	if (jsonResponse.status==='success'){
 					 		sessionStorage.setItem('auth',jsonResponse.auth);
 					 		sessionStorage.setItem('isAuthenticated',true);
 					 		console.log("yey");

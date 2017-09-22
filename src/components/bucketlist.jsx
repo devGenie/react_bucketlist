@@ -1,7 +1,5 @@
 import React from 'react';
 import BucketListItems from './bucketlist-items';
-import ItemForm from './item-form';
-import EditBucketlist from './edit-bucketlist';
 import _ from 'lodash'
 
 class Bucketlist extends React.Component{
@@ -34,7 +32,7 @@ class Bucketlist extends React.Component{
 			   "method":"GET"}
 		).then((response)=>response.json())
 		.then((jsonResponse)=>{
-			if(jsonResponse.status=='success'){
+			if(jsonResponse.status==='success'){
 				this.setState({
 					items:jsonResponse.data
 				});
@@ -66,7 +64,7 @@ class Bucketlist extends React.Component{
 
 	finalizeEditItem(data){
 		let found=_.findIndex(this.state.items,["id",data.id])
-		if(found!=undefined){
+		if(found!==undefined){
 			let items=this.state.items;
 			items[found]=data;
 			this.setState({items:items})
@@ -107,7 +105,7 @@ class Bucketlist extends React.Component{
 		).then((response)=>response.json())
 		.then((jsonResponse)=>{
 			console.log(jsonResponse)
-			if(jsonResponse.status=='success'){
+			if(jsonResponse.status==='success'){
 				this.props.deleteHandle(id);
 			}
 			else{
@@ -129,7 +127,6 @@ class Bucketlist extends React.Component{
 								<div className="listtitle">
 									{this.state.data.name}
 									<div className="right">
-										<a sclassName="secondary-content" onClick={this.handleDone}><i className="material-icons">more_vert</i></a>
 										<i className="material-icons float" data-target="item_model" onClick={this.handleAddItem}>add</i>
 										<i className="material-icons float" onClick={this.handleDeleteBucketlist}>delete</i>
 										<i className="material-icons float" onClick={this.handleEditBucketlist} data-target="EditBucketlist">edit</i>

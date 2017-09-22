@@ -23,30 +23,23 @@ class AddButton extends React.Component{
 	}
 }
 
-class BucketLists extends React.Component{
-	constructor(props){
-		super(props)
-	}
-
-	componentDidUpdate(){
-		console.log(this.props.data)
-	}
-
-	render(){
-		return(
-		       	<div>
-					<div className='row'>
-						{this.props.data.map((dataPoint,index)=>{
-							return <BucketList key={index} data={dataPoint} formCallback={this.props.formCallback} deleteHandle={this.props.handleDelete} itemEditCallback={this.props.itemEditCallback}/>
-						})}
-					</div>
-					<div>
-						<Pagination next="1" previous="2" loadPage={this.props.load} pages={this.props.pages}/>
-					
-					</div>
-				</div>
-			)
-	}
+const BucketLists = ({formCallback,handleDelete,itemEditCallback,load,pages,data})=>{
+	return(
+       	<div>
+			<div className='row'>
+				{data.map((dataPoint,index)=>{
+					return <BucketList key={index} data={dataPoint} 
+									   formCallback={formCallback} 
+									   deleteHandle={handleDelete} 
+									   itemEditCallback={itemEditCallback}/>
+				})}
+			</div>
+			<div>
+				<Pagination next="1" previous="2" loadPage={load} pages={pages}/>
+			
+			</div>
+		</div>
+		)
 }
 
 class DashBoard extends React.Component{
