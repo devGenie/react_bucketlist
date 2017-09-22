@@ -25,7 +25,7 @@ class ItemForm extends React.Component{
 			  	})
 			  }).then((response) => response.json())
 				.then((jsonResponse) => {
-					if(jsonResponse.status == 'success'){
+					if(jsonResponse.status === 'success'){
 						this.props.onComplete(jsonResponse.data)
 					}else{
 						//alert(JSON.stringify(jsonResponse.message))
