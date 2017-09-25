@@ -15,6 +15,23 @@ form{
 
 }
 
+.item-pagination{
+	margin: 0px !important;
+    /* height: 15px !important; */
+    margin-top: 0px !important;
+    padding: 2px !important; */
+    height: 20px !important; */
+    margin: 0px !important;
+    position: absolute;
+    bottom: 0px !important;
+    background-color: #2f4358 !important;
+    width: 100% !important;
+}
+
+.item-page{
+	margin-top: 5px !important;
+}
+
 #navbar-drop{
 	margin-top: 10px !important;
 	height: 45px !important;
@@ -47,6 +64,12 @@ form{
 	box-shadow: 0 1px 0 0 transparent !important;
 }
 
+.loader-img{
+	width: 10px !important;
+	height: 10px !important;
+	margin-top:5px !important;
+}
+
 .searchbar .search-icon{
 	cursor: pointer;
 	font-size: 24px !important;
@@ -54,7 +77,7 @@ form{
 
 .page-container{
 	position: fixed;
-	bottom: 20px !important;
+	bottom: 10px !important;
 	text-align: center;
 }
 
@@ -257,8 +280,8 @@ form{
 }
 
 .bk_card{
-	max-height: 300px !important;
-	min-height: 300px !important;
+	max-height: 325px !important;
+	min-height: 325px !important;
 }
 
 #view-result .modal-content{
@@ -368,6 +391,7 @@ nav{
 .bkitems{
 	width: 100%;
 	padding:5px !important;
+	margin-bottom: 0px !important;
 	margin-top: 0px !important;
 	padding-top:1px !important;
 }
