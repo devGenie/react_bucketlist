@@ -7,7 +7,7 @@ let url ="https://bucketapi.herokuapp.com/api/v1/bucketlists/";
 class Bucketlist extends React.Component{
 	constructor(props){
 		super(props)
-		this.state={items:[],data:this.props.data,next:'',previous:''}
+		this.state={items:[],data:this.props.data,next:'',previous:'',loader:'hide'}
 		this.handleAddItem=this.handleAddItem.bind(this)
 		this.handleEditBucketlist=this.handleEditBucketlist.bind(this)
 		this.completeAction=this.completeAction.bind(this)
@@ -26,7 +26,9 @@ class Bucketlist extends React.Component{
 	}
 
 	loadItems(itemsUrl){
-		console.log(itemsUrl)
+		this.setState({
+			loader:'show'
+		})
 		fetch(itemsUrl,
 			   {headers:{
 			   		Authorization:sessionStorage.getItem('auth')
@@ -38,12 +40,14 @@ class Bucketlist extends React.Component{
 				this.setState({
 					items:jsonResponse.data,
 					next:jsonResponse.next,
-					previous:jsonResponse.previous
+					previous:jsonResponse.previous,
+					loader:'hide'
 				});
 			}
 			else{
 				this.setState({
-					items:[]
+					items:[],
+					loader:'hide'
 				});
 			}
 		})
@@ -139,9 +143,12 @@ class Bucketlist extends React.Component{
 								<p className="about">{this.state.data.description}</p>
 							</span>
 							
-							<BucketListItems data={this.state.items} bucketlist={this.state.data.id} deleteFunc={this.handleItemDelete} editFunc={this.handleEditBucketlistItem}/>
+							<BucketListItems data={this.state.items} 
+											 bucketlist={this.state.data.id} 
+											 deleteFunc={this.handleItemDelete} 
+											 editFunc={this.handleEditBucketlistItem}/>
 						</div>
-						<Paginate next={this.state.next} previous={this.state.previous} trigger={this.loadItems}/>
+						<Paginate next={this.state.next} previous={this.state.previous} trigger={this.loadItems} loader={this.state.loader}/>
 					</div>
 				</div>
 			)
