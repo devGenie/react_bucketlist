@@ -15,6 +15,39 @@ form{
 
 }
 
+.item-pagination{
+	margin: 0px !important;
+    /* height: 15px !important; */
+    margin-top: 0px !important;
+    padding: 2px !important; */
+    height: 20px !important; */
+    margin: 0px !important;
+    position: absolute;
+    bottom: 0px !important;
+    background-color: #2f4358 !important;
+    width: 100% !important;
+}
+
+.item-page{
+	margin-top: 5px !important;
+}
+
+#navbar-drop{
+	margin-top: 10px !important;
+	height: 45px !important;
+	text-align: right !important;
+}
+
+#user-dropdown{
+	padding: 0px !important;
+	vertical-align: middle;
+}
+
+#dropdown-btn{
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+
 .searchbar input{
 	margin:0px !important;
 	padding-left: 5px !important;
@@ -23,8 +56,7 @@ form{
 	border:0px transparent !important;
 	background-color: #717d8a !important;
 	border-radius: 0px !important;
-	height: 35px !important;
-	margin-top: 15px !important;
+	margin-top: 10px !important;
 }
 
 .searchbar input:focus{
@@ -32,9 +64,21 @@ form{
 	box-shadow: 0 1px 0 0 transparent !important;
 }
 
+.loader-img{
+	width: 10px !important;
+	height: 10px !important;
+	margin-top:5px !important;
+}
+
 .searchbar .search-icon{
 	cursor: pointer;
 	font-size: 24px !important;
+}
+
+.page-container{
+	position: fixed;
+	bottom: 10px !important;
+	text-align: center;
 }
 
 .btn{
@@ -236,8 +280,8 @@ form{
 }
 
 .bk_card{
-	max-height: 300px !important;
-	min-height: 300px !important;
+	max-height: 325px !important;
+	min-height: 325px !important;
 }
 
 #view-result .modal-content{
@@ -347,6 +391,7 @@ nav{
 .bkitems{
 	width: 100%;
 	padding:5px !important;
+	margin-bottom: 0px !important;
 	margin-top: 0px !important;
 	padding-top:1px !important;
 }
@@ -358,6 +403,10 @@ nav{
 
 .modal{
 	width: 30% !important;
+}
+
+#topNave{
+	display: block !important;
 }
 
 .card .card-content{
@@ -381,6 +430,7 @@ nav{
 	position: absolute;
 	top:50% !important;
 	left:45% !important;
+	z-index: 100;
 }
 
 .pending{
@@ -404,4 +454,29 @@ nav{
 	font-size:13px !important;
 	font-weight: bold;
 	color:#368BC1 !important;
+}
+
+.page{
+	cursor: pointer;
+	float:left !important;
+	padding:5px !important;
+	margin:2px !important;
+	height: 28px !important;
+	min-width: 35px !important;
+	text-align: center !important;
+	border:1px solid #e2e2e2 !important;
+	border-radius:3px !important;
+	background-color: #fafafa !important;
+	font-size: 13px !important;
+    font-weight: bold;
+    color: #5b5d5f;
+    text-transform: capitalize;
+    text-overflow: ellipsis;
+    line-height: 16px !important;
+}
+
+.page:hover{
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 4px 0 rgba(0,0,0,.12) !important;
+	background-color:#e8e5e5 !important;
+	transition-delay: 0.3ms;
 }

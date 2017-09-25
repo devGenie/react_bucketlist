@@ -36,7 +36,7 @@ class RegisterForm extends React.Component{
 					 .then((response) => response.json())
 					 .then((jsonResponse) => {
 					 	console.log(JSON.stringify(jsonResponse));
-					 	if (jsonResponse.status=='success'){
+					 	if (jsonResponse.status==='success'){
 					 		this.setState({
 					 			progress:'hide',
 					 			button:''

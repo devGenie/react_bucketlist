@@ -1,13 +1,13 @@
 import React from 'react';
 import BucketListItems from './bucketlist-items';
-import ItemForm from './item-form';
-import EditBucketlist from './edit-bucketlist';
-import _ from 'lodash'
+import _ from 'lodash';
+import Paginate from './items-pagination';
+let url ="https://bucketapi.herokuapp.com/api/v1/bucketlists/";
 
 class Bucketlist extends React.Component{
 	constructor(props){
 		super(props)
-		this.state={items:[],data:this.props.data}
+		this.state={items:[],data:this.props.data,next:'',previous:'',loader:'hide'}
 		this.handleAddItem=this.handleAddItem.bind(this)
 		this.handleEditBucketlist=this.handleEditBucketlist.bind(this)
 		this.completeAction=this.completeAction.bind(this)
@@ -21,12 +21,14 @@ class Bucketlist extends React.Component{
 
 	componentWillReceiveProps(newProps){
 		this.setState({data:newProps.data})
-		this.loadItems(newProps.data.id)
+		let itemsUrl=url+newProps.data.id+"/items/";
+		this.loadItems(itemsUrl)
 	}
 
-	loadItems(id){
-		let url ="https://bucketapi.herokuapp.com/api/v1/bucketlists/";
-		let itemsUrl=url+id+"/items/";
+	loadItems(itemsUrl){
+		this.setState({
+			loader:'show'
+		})
 		fetch(itemsUrl,
 			   {headers:{
 			   		Authorization:sessionStorage.getItem('auth')
@@ -34,30 +36,34 @@ class Bucketlist extends React.Component{
 			   "method":"GET"}
 		).then((response)=>response.json())
 		.then((jsonResponse)=>{
-			if(jsonResponse.status=='success'){
+			if(jsonResponse.status === 'success'){
 				this.setState({
-					items:jsonResponse.data
+					items:jsonResponse.data,
+					next:jsonResponse.next,
+					previous:jsonResponse.previous,
+					loader:'hide'
 				});
 			}
 			else{
 				this.setState({
-					items:[]
+					items:[],
+					loader:'hide'
 				});
 			}
 		})
 	}
 
 	componentDidMount(){
-		this.loadItems(this.state.data.id)
+		let itemsUrl=url+this.props.data.id+"/items/";
+		this.loadItems(itemsUrl)
 	}
 
 	completeAction(result){
-		let newVar=this.state.items.slice()
-		newVar.push(result)
-
-		this.setState({items:newVar})
-
-		console.log(this.state.items)
+		if(this.state.items.length>3){
+			let newVar=this.state.items.slice()
+			newVar.push(result)
+			this.setState({items:newVar})
+		}
 	}
 
 	handleAddItem(){
@@ -66,7 +72,7 @@ class Bucketlist extends React.Component{
 
 	finalizeEditItem(data){
 		let found=_.findIndex(this.state.items,["id",data.id])
-		if(found!=undefined){
+		if(found!==undefined){
 			let items=this.state.items;
 			items[found]=data;
 			this.setState({items:items})
@@ -107,7 +113,7 @@ class Bucketlist extends React.Component{
 		).then((response)=>response.json())
 		.then((jsonResponse)=>{
 			console.log(jsonResponse)
-			if(jsonResponse.status=='success'){
+			if(jsonResponse.status==='success'){
 				this.props.deleteHandle(id);
 			}
 			else{
@@ -122,14 +128,13 @@ class Bucketlist extends React.Component{
 
 	render(){
 		return(
-				<div className="col s3">
-					<div className="card bk_card">
+				<div className="col s12 m6 l3">
+					<div className="card bk_card z-depth-5">
 						<div className="card-content">
 							<span className="card-title">
 								<div className="listtitle">
 									{this.state.data.name}
 									<div className="right">
-										<a sclassName="secondary-content" onClick={this.handleDone}><i className="material-icons">more_vert</i></a>
 										<i className="material-icons float" data-target="item_model" onClick={this.handleAddItem}>add</i>
 										<i className="material-icons float" onClick={this.handleDeleteBucketlist}>delete</i>
 										<i className="material-icons float" onClick={this.handleEditBucketlist} data-target="EditBucketlist">edit</i>
@@ -138,8 +143,12 @@ class Bucketlist extends React.Component{
 								<p className="about">{this.state.data.description}</p>
 							</span>
 							
-							<BucketListItems data={this.state.items} bucketlist={this.state.data.id} deleteFunc={this.handleItemDelete} editFunc={this.handleEditBucketlistItem}/>
+							<BucketListItems data={this.state.items} 
+											 bucketlist={this.state.data.id} 
+											 deleteFunc={this.handleItemDelete} 
+											 editFunc={this.handleEditBucketlistItem}/>
 						</div>
+						<Paginate next={this.state.next} previous={this.state.previous} trigger={this.loadItems} loader={this.state.loader}/>
 					</div>
 				</div>
 			)

@@ -45,7 +45,7 @@ class BucketlistForm extends React.Component{
 			  	})
 			  }).then((response) => response.json())
 				.then((jsonResponse) => {
-					if(jsonResponse.status == 'success'){
+					if(jsonResponse.status === 'success'){
 						console.log(JSON.stringify(jsonResponse.data))
 						this.props.handler(jsonResponse.data)
 					}else{

@@ -1,7 +1,6 @@
 import React from 'react';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
-import Topnav from './topnav';
 
 
 class Note extends React.Component{

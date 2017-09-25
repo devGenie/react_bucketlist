@@ -7,6 +7,7 @@ import EditItem from './edit-item';
 import EditBucketlist from './edit-bucketlist';
 import Spinner from './notifications/spinner';
 import ViewResult from './view-result';
+import Pagination from './pagination';
 import _ from 'lodash';
 
 
@@ -22,31 +23,30 @@ class AddButton extends React.Component{
 	}
 }
 
-class BucketLists extends React.Component{
-	constructor(props){
-		super(props)
-	}
-
-	componentDidUpdate(){
-		console.log(this.props.data)
-	}
-
-	render(){
-		return(
-				<div className='row'>
-					{this.props.data.map((dataPoint,index)=>{
-						console.log(dataPoint)
-						return <BucketList key={index} data={dataPoint} formCallback={this.props.formCallback} deleteHandle={this.props.handleDelete} itemEditCallback={this.props.itemEditCallback}/>
-					})}
-				</div>
-			)
-	}
+const BucketLists = ({formCallback,handleDelete,itemEditCallback,load,pages,data})=>{
+	return(
+       	<div>
+			<div className='row'>
+				{data.map((dataPoint,index)=>{
+					return <BucketList key={index} data={dataPoint} 
+									   formCallback={formCallback} 
+									   deleteHandle={handleDelete} 
+									   itemEditCallback={itemEditCallback}/>
+				})}
+			</div>
+			<div>
+				<Pagination next="1" previous="2" loadPage={load} pages={pages}/>
+			
+			</div>
+		</div>
+		)
 }
 
 class DashBoard extends React.Component{
 	constructor(props){
 		super(props)
 		this.state={spinner:'show',bucketlists:[],
+					pages:0,
 					editedItem:{bucketlist:'',item:{id:'',name:''},callback:''},
 					editedBucketlist:{name:'',description:''},
 					view:{id:'',name:'',description:''}
@@ -59,8 +59,10 @@ class DashBoard extends React.Component{
 		this.registerCaller=this.registerCaller.bind(this)
 		this.handleFetchCaller=this.handleFetchCaller.bind(this)
 		this.onComplete=this.onComplete.bind(this)
-		this.viewBucketList=this.viewBucketList.bind(this)
+		this.searchResults=this.searchResults.bind(this)
 		this.updateOnDelete=this.updateOnDelete.bind(this)
+		this.loadData=this.loadData.bind(this)
+		this.loadPage=this.loadPage.bind(this)
 	}
 
 	viewBucketList(data){
@@ -68,18 +70,27 @@ class DashBoard extends React.Component{
 	}
 
 	componentDidMount(){
+		this.loadData()
+	}
+
+	loadPage(page){
+		this.loadData(page)
+	}
+
+	loadData(page=1){
 		this.setState({spinner:'show'})
-		fetch("https://bucketapi.herokuapp.com/api/v1/bucketlists/",
+		fetch("https://bucketapi.herokuapp.com/api/v1/bucketlists/?page="+page+"&pagesize=8",
 			   {headers:{
 			   		Authorization:sessionStorage.getItem('auth')
 			   },
 			   "method":"GET"}
 		).then((response)=>response.json())
 		.then((jsonResponse)=>{
-			let res=JSON.stringify(jsonResponse);
-			if(jsonResponse.status=='success'){
+			if(jsonResponse.status==='success'){
+				console.log("pages"+jsonResponse.pages)
 				this.setState({
-					bucketlists:jsonResponse.data
+					bucketlists:jsonResponse.data,
+					pages:jsonResponse.pages
 				});
 			}
 			else{
@@ -89,10 +100,20 @@ class DashBoard extends React.Component{
 		})
 	}
 
+	searchResults(bucketlists){
+		if(bucketlists.length>0){
+			this.setState({
+			bucketlists:bucketlists
+			})
+		}
+	}
+
 	bucketlistHandler(bucketlist){
-		this.setState({
+		if(this.state.bucketlists.length<8){
+			this.setState({
 			bucketlist:this.state.bucketlists.push(bucketlist)
 		})
+		}
 	}
 
 	onComplete(data){
@@ -134,23 +155,28 @@ class DashBoard extends React.Component{
 	render(){
 		return(
 				<div>
-					<Topnav viewSearch={this.viewBucketList}/>
+					<Topnav searchResults={this.searchResults}/>
 					<div className='container'>
 						<div className="row" id="bklist_controller">
 							<AddButton/>
 						</div>
 						<Spinner status={this.state.spinner}/>
-						<BucketLists data={this.state.bucketlists} 
+						<BucketLists data={this.state.bucketlists}
+									 pages={this.state.pages} 
 									 itemEditCallback={this.handleItemEdit} 
 									 formCallback={this.registerCaller} 
 									 handleDelete={this.updateOnDelete}
+									 load={this.loadPage}
 						/>
 					</div>
 					<BucketListForm handler={this.bucketlistHandler}/>
 					<ItemForm caller={this.handleFetchCaller} onComplete={this.onComplete}/>
 					<EditBucketlist caller={this.handleFetchCaller} onComplete={this.onComplete} editing={this.state.editedBucketlist}/>
 					<EditItem caller={this.state.editedItem}/>
-					<ViewResult result={this.state.view}/>
+					<ViewResult result={this.state.view}
+								formCallback={this.registerCaller} 
+								deleteHandle={this.updateOnDelete} 
+								itemEditCallback={this.handleItemEdit}/>
 
 				</div>
 			)}
