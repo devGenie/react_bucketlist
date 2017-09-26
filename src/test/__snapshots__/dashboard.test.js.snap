@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DashBoard> renders correctly 1`] = `
+<div>
+  <Topnav
+    searchResults={[Function]}
+  />
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+      id="bklist_controller"
+    >
+      <AddButton />
+    </div>
+    <Spinners
+      status="show"
+    />
+    <BucketLists
+      data={Array []}
+      formCallback={[Function]}
+      handleDelete={[Function]}
+      itemEditCallback={[Function]}
+      load={[Function]}
+      pages={0}
+    />
+  </div>
+  <BucketlistForm
+    handler={[Function]}
+  />
+  <ItemForm
+    caller={[Function]}
+    onComplete={[Function]}
+  />
+  <EditBucketlist
+    caller={[Function]}
+    editing={
+      Object {
+        "description": "",
+        "name": "",
+      }
+    }
+    onComplete={[Function]}
+  />
+  <EditItem
+    caller={
+      Object {
+        "bucketlist": "",
+        "callback": "",
+        "item": Object {
+          "id": "",
+          "name": "",
+        },
+      }
+    }
+  />
+</div>
+`;
