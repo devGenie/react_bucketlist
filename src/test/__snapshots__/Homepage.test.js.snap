@@ -1,0 +1,254 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomeScreen> should render 1`] = `
+<HomeScreen>
+  <div
+    className="genie-carousel"
+  >
+    <div
+      className="row"
+      id="forms"
+    >
+      <div
+        className="flipper"
+      >
+        <div
+          id="loginForm_area"
+        >
+          <LoginForm>
+            <form
+              className="translucent col s12"
+              onSubmit={[Function]}
+            >
+              <Loading
+                status="hide"
+              >
+                <div
+                  className="progress hide"
+                >
+                  <div
+                    className="indeterminate"
+                  />
+                </div>
+              </Loading>
+              <div
+                className="innerForm col s12"
+              >
+                <h5
+                  className="col s12 center"
+                >
+                  Login
+                </h5>
+                <FieldWrapper
+                  Label="Email"
+                >
+                  <div
+                    className="input-field  "
+                  >
+                    <input
+                      className="validate"
+                      id="login_username"
+                      name="email"
+                      onChange={[Function]}
+                      type="email"
+                    />
+                    <label>
+                      Email
+                    </label>
+                  </div>
+                </FieldWrapper>
+                <FieldWrapper
+                  Label="Password"
+                >
+                  <div
+                    className="input-field  "
+                  >
+                    <input
+                      aria-required="true"
+                      id="login_password"
+                      name="password"
+                      onChange={[Function]}
+                      required=""
+                      type="password"
+                    />
+                    <label>
+                      Password
+                    </label>
+                  </div>
+                </FieldWrapper>
+                <FieldWrapper
+                  extraz="center"
+                >
+                  <div
+                    className="input-field center"
+                  >
+                    <button
+                      className="btn "
+                      id="loginBtn"
+                      type="submit"
+                    >
+                      Login
+                    </button>
+                    <label />
+                  </div>
+                </FieldWrapper>
+              </div>
+            </form>
+          </LoginForm>
+          <Note>
+            <p
+              className="note translucent center white col s12"
+            >
+              Don't have an account?
+            </p>
+          </Note>
+          <Fliper>
+            <div
+              className="col s12 center"
+            >
+              <button
+                className="btn flip_me"
+              >
+                Register
+              </button>
+            </div>
+          </Fliper>
+        </div>
+        <div
+          id="registerForm_area"
+        >
+          <RegisterForm>
+            <form
+              className="col s12 translucent"
+              onSubmit={[Function]}
+            >
+              <Loading
+                status="hide"
+              >
+                <div
+                  className="progress hide"
+                >
+                  <div
+                    className="indeterminate"
+                  />
+                </div>
+              </Loading>
+              <div
+                className="innerForm col s12"
+              >
+                <h5
+                  className="col s12 center"
+                >
+                  Register
+                </h5>
+                <FieldWrapper
+                  Label="Email"
+                >
+                  <div
+                    className="input-field  "
+                  >
+                    <input
+                      className="validate"
+                      name="email"
+                      onChange={[Function]}
+                      type="email"
+                    />
+                    <label>
+                      Email
+                    </label>
+                  </div>
+                </FieldWrapper>
+                <FieldWrapper
+                  Label="First Name"
+                >
+                  <div
+                    className="input-field  "
+                  >
+                    <input
+                      className="validate"
+                      name="first_name"
+                      onChange={[Function]}
+                      type="text"
+                    />
+                    <label>
+                      First Name
+                    </label>
+                  </div>
+                </FieldWrapper>
+                <FieldWrapper
+                  Label="Last Name"
+                >
+                  <div
+                    className="input-field  "
+                  >
+                    <input
+                      className="validate"
+                      name="last_name"
+                      onChange={[Function]}
+                      type="text"
+                    />
+                    <label>
+                      Last Name
+                    </label>
+                  </div>
+                </FieldWrapper>
+                <FieldWrapper
+                  Label="Password"
+                >
+                  <div
+                    className="input-field  "
+                  >
+                    <input
+                      className="validate"
+                      name="password"
+                      onChange={[Function]}
+                      type="password"
+                    />
+                    <label>
+                      Password
+                    </label>
+                  </div>
+                </FieldWrapper>
+                <FieldWrapper
+                  extraz="center"
+                >
+                  <div
+                    className="input-field center"
+                  >
+                    <button
+                      className="btn "
+                      name="submit"
+                      type="submit"
+                    >
+                      Register
+                    </button>
+                    <label />
+                  </div>
+                </FieldWrapper>
+              </div>
+            </form>
+          </RegisterForm>
+          <Note>
+            <p
+              className="note translucent center white col s12"
+            >
+              Already have an account?
+            </p>
+          </Note>
+          <Fliper>
+            <div
+              className="col s12 center"
+            >
+              <button
+                className="btn flip_me"
+              >
+                Login
+              </button>
+            </div>
+          </Fliper>
+        </div>
+      </div>
+    </div>
+  </div>
+</HomeScreen>
+`;
