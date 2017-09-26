@@ -128,7 +128,7 @@ class Bucketlist extends React.Component{
 
 	render(){
 		return(
-				<div className="col s12 m6 l3">
+				<div className="col s12 m6 l3 bucketlist">
 					<div className="card bk_card z-depth-5">
 						<div className="card-content">
 							<span className="card-title">
