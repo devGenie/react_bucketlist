@@ -1,13 +1,11 @@
 import React from 'react';
 import Topnav from './topnav';
-import BucketList from './bucketlist';
 import BucketListForm from './bucketlist-form';
 import ItemForm from './item-form';
 import EditItem from './edit-item';
 import EditBucketlist from './edit-bucketlist';
 import Spinner from './notifications/spinner';
-import ViewResult from './view-result';
-import Pagination from './pagination';
+import BucketLists from './bucketlists';
 import _ from 'lodash';
 
 
@@ -23,24 +21,7 @@ class AddButton extends React.Component{
 	}
 }
 
-const BucketLists = ({formCallback,handleDelete,itemEditCallback,load,pages,data})=>{
-	return(
-       	<div>
-			<div className='row'>
-				{data.map((dataPoint,index)=>{
-					return <BucketList key={index} data={dataPoint} 
-									   formCallback={formCallback} 
-									   deleteHandle={handleDelete} 
-									   itemEditCallback={itemEditCallback}/>
-				})}
-			</div>
-			<div>
-				<Pagination next="1" previous="2" loadPage={load} pages={pages}/>
-			
-			</div>
-		</div>
-		)
-}
+
 
 class DashBoard extends React.Component{
 	constructor(props){
@@ -173,11 +154,6 @@ class DashBoard extends React.Component{
 					<ItemForm caller={this.handleFetchCaller} onComplete={this.onComplete}/>
 					<EditBucketlist caller={this.handleFetchCaller} onComplete={this.onComplete} editing={this.state.editedBucketlist}/>
 					<EditItem caller={this.state.editedItem}/>
-					<ViewResult result={this.state.view}
-								formCallback={this.registerCaller} 
-								deleteHandle={this.updateOnDelete} 
-								itemEditCallback={this.handleItemEdit}/>
-
 				</div>
 			)}
 }
