@@ -65,6 +65,19 @@ describe('<LoginForm/>',()=>{
 		expect(doSubmit.called).toBe(true);
 		doSubmit.restore();
 	});
+
+	it('should be able to trigger change event',()=>{
+		const changeStub = spy(LoginForm.prototype,'handleChange');
+		const login = shallow(<LoginForm/>);
+		login.find('input').find({name:'email'}).simulate('change',{
+			target:{
+				email:'changed'
+			}
+		})
+
+		expect(changeStub.called).toBe(true);
+		changeStub.restore()
+	})
 });
 
 describe('<RegisterForm>', () =>{
