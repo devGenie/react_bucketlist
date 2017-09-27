@@ -93,6 +93,19 @@ describe('<RegisterForm>', () =>{
 		expect(register.called).toBe(true);
 		register.restore();
 	})
+
+	it('should be able to trigger change event',()=>{
+		const changeStub = spy(RegisterForm.prototype,'handleChange');
+		const registrationForm = shallow(<RegisterForm/>);
+		registrationForm.find('input').find({name:'email'}).simulate('change',{
+			target:{
+				email:'changed'
+			}
+		})
+
+		expect(changeStub.called).toBe(true);
+		changeStub.restore()
+	})
 })
 
 describe('<HomeScreen>',()=>{
