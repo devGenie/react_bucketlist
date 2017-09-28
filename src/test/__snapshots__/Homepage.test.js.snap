@@ -252,3 +252,119 @@ exports[`<HomeScreen> should render 1`] = `
   </div>
 </HomeScreen>
 `;
+
+exports[`<LoginForm/> should render correctly 1`] = `undefined`;
+
+exports[`<RegisterForm> should render correctly 1`] = `
+<RegisterForm>
+  <form
+    className="col s12 translucent"
+    onSubmit={[Function]}
+  >
+    <Loading
+      status="hide"
+    >
+      <div
+        className="progress hide"
+      >
+        <div
+          className="indeterminate"
+        />
+      </div>
+    </Loading>
+    <div
+      className="innerForm col s12"
+    >
+      <h5
+        className="col s12 center"
+      >
+        Register
+      </h5>
+      <FieldWrapper
+        Label="Email"
+      >
+        <div
+          className="input-field  "
+        >
+          <input
+            className="validate"
+            name="email"
+            onChange={[Function]}
+            type="email"
+          />
+          <label>
+            Email
+          </label>
+        </div>
+      </FieldWrapper>
+      <FieldWrapper
+        Label="First Name"
+      >
+        <div
+          className="input-field  "
+        >
+          <input
+            className="validate"
+            name="first_name"
+            onChange={[Function]}
+            type="text"
+          />
+          <label>
+            First Name
+          </label>
+        </div>
+      </FieldWrapper>
+      <FieldWrapper
+        Label="Last Name"
+      >
+        <div
+          className="input-field  "
+        >
+          <input
+            className="validate"
+            name="last_name"
+            onChange={[Function]}
+            type="text"
+          />
+          <label>
+            Last Name
+          </label>
+        </div>
+      </FieldWrapper>
+      <FieldWrapper
+        Label="Password"
+      >
+        <div
+          className="input-field  "
+        >
+          <input
+            className="validate"
+            name="password"
+            onChange={[Function]}
+            type="password"
+          />
+          <label>
+            Password
+          </label>
+        </div>
+      </FieldWrapper>
+      <FieldWrapper
+        extraz="center"
+      >
+        <div
+          className="input-field center"
+        >
+          <button
+            className="btn "
+            name="submit"
+            type="submit"
+          >
+            Register
+          </button>
+          <label />
+        </div>
+      </FieldWrapper>
+    </div>
+  </form>
+</RegisterForm>
+`;
