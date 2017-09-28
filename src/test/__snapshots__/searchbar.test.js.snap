@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Search /> Should render 1`] = `
+<div
+  className="searchbar z-depth-5 search"
+>
+  <input
+    id="search"
+    onChange={[Function]}
+    placeholder="Search"
+  />
+</div>
+`;
