@@ -18,6 +18,8 @@ describe("<BucketListItems/>",()=>{
 	let itemdata={id:1,name:'Bucket1',complete_status:true,date_completed:'mm/yy'};
 	let bucketlistitems;
 	let doneFunction;
+	let editFuncion;
+	let deleteFunction;
 	let editFunc;
 	let fetchMock;
 	let item;
@@ -26,6 +28,8 @@ describe("<BucketListItems/>",()=>{
 		editFunc = stub();
 		fetchMock = stub(window,'fetch').returnsPromise().resolves({});
 		doneFunction=spy(BucketListItem.prototype,'handleDone');
+		editFuncion=spy(BucketListItem.prototype,'handleEdit');
+		deleteFunction = spy(BucketListItem.prototype,'handleDelete');
 		bucketlistitems = mount(<BucketListItems editFunc={editFunc}
 	 										   data={[itemdata]}/>);
 	 	item = mount(<BucketListItem data={itemdata}/>);
@@ -34,6 +38,8 @@ describe("<BucketListItems/>",()=>{
 	afterEach(()=>{
 		fetchMock.restore();
 		doneFunction.restore();
+		editFuncion.restore();
+		deleteFunction.restore();
 	})
 	
 	 it("can render successfully",()=>{
@@ -47,6 +53,11 @@ describe("<BucketListItems/>",()=>{
 	 it("handle item can be done",()=>{
 	 	let done = bucketlistitems.find('.items').find('.completeButton').simulate('click');
 	 	expect(doneFunction.called).toBe(true)
+	 })
+
+	 it("handle item can be deleted",()=>{
+	 	bucketlistitems.find('.items').find('.deleteButton').simulate('click');
+	 	expect(deleteFunction.called).toBe(true)
 	 })
 
 	 it("can call editFunc prop",()=>{
