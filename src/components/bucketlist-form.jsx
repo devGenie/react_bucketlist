@@ -46,7 +46,6 @@ class BucketlistForm extends React.Component{
 			  }).then((response) => response.json())
 				.then((jsonResponse) => {
 					if(jsonResponse.status === 'success'){
-						console.log(JSON.stringify(jsonResponse.data))
 						this.props.handler(jsonResponse.data)
 					}else{
 						alert(JSON.stringify(jsonResponse.message))
@@ -78,7 +77,7 @@ class BucketlistForm extends React.Component{
 						</FieldWrapper>
 
 						<FieldWrapper extraz="right">
-							<button className={"btn "+this.state.button}>Create Bucketlist</button>
+							<button type="submit" className={"btn "+this.state.button}>Create Bucketlist</button>
 						</FieldWrapper>
 					</div>
 				</form>
