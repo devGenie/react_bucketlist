@@ -4,12 +4,8 @@ import BucketListItem from './bucketlist-item';
 class BucketListItems extends React.Component{
 	constructor(props){
 		super(props)
-		this.handleItemEdit=this.handleItemEdit.bind(this)
 	}
 
-	handleItemEdit(item_id){
-		this.props.editFunc(item_id)
-	}
 	render(){
 		if(this.props.data.length>0){
 			return(
