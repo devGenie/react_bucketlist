@@ -15,13 +15,41 @@ sinonStubPromise(sinon)
 window.sessionStorage = localStorageMock;
 
 describe('<BucketlistForm/>',()=>{
-	const formMount;
+	let formMount;
+	let fetchMock;
+	let changeSpy;
+	let submitSpy;
 
 	beforeEach(()=>{
-		form=mount(<BucketlistForm />)
+		fetchMock = stub(window,'fetch').returnsPromise().resolves({status:'success'});
+		changeSpy = spy(BucketlistForm.prototype,'handleChange');
+		submitSpy = spy(BucketlistForm.prototype,'handleSubmit');
+		formMount = mount(<BucketlistForm />);
+	});
+
+	afterEach(()=>{
+		fetchMock.restore();
+		changeSpy.restore();
+		submitSpy.restore()
 	});
 
 	it('can render correctly',()=>{
 		expect(toJson(formMount)).toMatchSnapshot()
 	});
+
+	it('can submit data',()=>{
+		formMount.find('form').simulate('submit',{
+			preventDefault:()=>{}
+		});
+		expect(submitSpy.called).toBe(true)
+	});
+
+	it('can handle change event',()=>{
+		formMount.find('form').find({name:'name'}).simulate('change',{
+			target:{
+				value:'changed'
+			}
+		});
+		expect(changeSpy.called).toBe(true)
+	})
 })
