@@ -2,13 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {shallow, mount } from 'enzyme';
 import {stub, spy} from 'sinon';
+import sinon from 'sinon';
 import 'should';
 import 'should-enzyme';
 import toJson from 'enzyme-to-json';
+import sinonStubPromise from 'sinon-stub-promise';
 
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
-import HomeScreen from '../components/HomePage'
+import HomeScreen from '../components/HomePage';
+import localStorageMock from '../__mocks__/localStorage';
+
+sinonStubPromise(sinon)
+window.sessionStorage = localStorageMock;
+
+
 
 describe('<LoginForm/>',()=>{
 	it('should have two input fields',()=>{
@@ -66,6 +74,18 @@ describe('<LoginForm/>',()=>{
 		doSubmit.restore();
 	});
 
+	it('can submit data',()=>{
+		const fetchStub = stub(window,'fetch').returnsPromise().resolves({status:'success',auth:'auth'})
+		const submit = spy(LoginForm.prototype,'handleSubmit');
+		const wrapper=shallow(<LoginForm />);
+		wrapper.simulate("submit",{
+			preventDefault:()=>{}
+		})
+		expect(submit.called).toBe(true)
+		submit.restore()
+		fetchStub.restore()
+	});
+
 	it('should be able to trigger change event',()=>{
 		const changeStub = spy(LoginForm.prototype,'handleChange');
 		const login = shallow(<LoginForm/>);
@@ -77,6 +97,11 @@ describe('<LoginForm/>',()=>{
 
 		expect(changeStub.called).toBe(true);
 		changeStub.restore()
+	})
+
+	it("should render correctly",()=>{
+		const loginForm = mount(<LoginForm/>);
+		expect(toJson(LoginForm)).toMatchSnapshot()
 	})
 });
 
@@ -118,6 +143,23 @@ describe('<RegisterForm>', () =>{
 
 		expect(changeStub.called).toBe(true);
 		changeStub.restore()
+	})
+
+	it('can submit data',()=>{
+		const fetchStub=stub(window,'fetch').returnsPromise().resolves({status:'success',data:{}})
+		const submit = spy(RegisterForm.prototype,'handleSubmit');
+		const wrapper=shallow(<RegisterForm />);
+		wrapper.simulate("submit",{
+			preventDefault:()=>{}
+		})
+		expect(submit.called).toBe(true)
+		submit.restore()
+		fetchStub.restore()
+	});
+
+	it("should render correctly",()=>{
+		const register = mount(<RegisterForm/>);
+		expect(toJson(register)).toMatchSnapshot()
 	})
 })
 
