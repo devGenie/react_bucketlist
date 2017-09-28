@@ -61,7 +61,6 @@ class BucketListItem extends React.Component{
 			   "method":"PUT"}
 		).then((response)=>response.json())
 		.then((jsonResponse)=>{
-			console.log(jsonResponse)
 			if(jsonResponse.status=='success'){	
 				this.setState({
 					completed:true,
@@ -69,7 +68,7 @@ class BucketListItem extends React.Component{
 				})
 			}
 			else{
-				console.log(jsonResponse.message);
+				//console.log(jsonResponse.message);
 			}
 		})
 	}
