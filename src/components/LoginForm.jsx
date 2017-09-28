@@ -34,7 +34,6 @@ class LoginForm extends React.Component {
 					 	if (jsonResponse.status==='success'){
 					 		sessionStorage.setItem('auth',jsonResponse.auth);
 					 		sessionStorage.setItem('isAuthenticated',true);
-					 		console.log("yey");
 					 		window.location='/dashboard'
 					 	}else{
 					 		this.setState({
@@ -43,7 +42,6 @@ class LoginForm extends React.Component {
 					 		})
 					 		window.Materialize.toast(jsonResponse.message,4000)
 					 	}
-					 	//alert(sessionStorage.getItem('auth'))
 					 }).catch(()=>{
 					 	this.setState({
 					 			progress:'hide',
