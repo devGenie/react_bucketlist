@@ -8,7 +8,6 @@ class Search extends React.Component {
   }
 
   search(event) {
-    event.preventDefault();
     const search_term = event.target.value;
     if (search_term.length > 0) {
       fetch(`https://bucketapi.herokuapp.com/api/v1/bucketlists/?q=${search_term}`,
@@ -19,6 +18,7 @@ class Search extends React.Component {
 			).then(response => response.json())
 			.then((jsonResponse) => {
   if (jsonResponse.status == 'success') {
+
     this.props.searchResults(jsonResponse.data)
   }			// this.setState({spinner:'hide'})
 });
