@@ -85,9 +85,9 @@ class BucketListItem extends React.Component{
 				      <span className="item_name">{this.props.data.name}</span>
 					  <div className="right">
 						<SeeMore>
-							<a className="dropdown_icon" onClick={this.handleDone}><i className="material-icons">check_box</i></a>
-							<a className="dropdown_icon" onClick={this.handleEdit} data-target="item_edit_model"><i className="material-icons">edit</i></a>
-							<a className="dropdown_icon" onClick={this.handleDelete}><i className="material-icons">delete</i></a>
+							<a className="dropdown_icon completeButton" onClick={this.handleDone}><i className="material-icons">check_box</i></a>
+							<a className="dropdown_icon editButton" onClick={this.handleEdit} data-target="item_edit_model"><i className="material-icons">edit</i></a>
+							<a className="dropdown_icon deleteButton" onClick={this.handleDelete}><i className="material-icons">delete</i></a>
 						</SeeMore>
 
 					  </div>
