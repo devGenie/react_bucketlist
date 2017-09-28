@@ -8,34 +8,45 @@ import 'should-enzyme';
 import localStorageMock from '../__mocks__/localStorage';
 import bucketlistmock from '../__mocks__/bucketlists-mock';
 import BucketListItems from '../components/bucketlist-items';
-import BucketListItem from '../components/bucketlist-item';
-import BucketList from '../components/bucketlist'
-
+import BucketListItem from '../components/bucketlist-item'
 import sinonStubPromise from 'sinon-stub-promise';
 
 sinonStubPromise(sinon)
 window.sessionStorage = localStorageMock;
 
 describe("<BucketListItems/>",()=>{
-	let item={id:1,name:'Bucket1',complete_status:true,date_completed:'mm/yy'};
+	let itemdata={id:1,name:'Bucket1',complete_status:true,date_completed:'mm/yy'};
 	let bucketlistitems;
-	let editFunction;
+	let doneFunction;
 	let editFunc;
-	let bucketlist;
+	let fetchMock;
+	let item;
 
 	beforeEach(()=>{
-		editFunc = stub().returns(true);
-		bucketlist=BucketList.instance;
+		editFunc = stub();
+		fetchMock = stub(window,'fetch').returnsPromise().resolves({});
+		doneFunction=spy(BucketListItem.prototype,'handleDone');
 		bucketlistitems = mount(<BucketListItems editFunc={editFunc}
-	 										   data={[item]}/>);
+	 										   data={[itemdata]}/>);
+	 	item = mount(<BucketListItem data={itemdata}/>);
 	})
 
 	afterEach(()=>{
-		//editFunc.restore();
+		fetchMock.restore();
+		doneFunction.restore();
 	})
 	
 	 it("can render successfully",()=>{
 	 	expect(toJson(bucketlistitems)).toMatchSnapshot()
+	 })
+
+	 it("item can render successfully",()=>{
+	 	expect(toJson(bucketlistitems)).toMatchSnapshot()
+	 })
+
+	 it("handle item can be done",()=>{
+	 	let done = bucketlistitems.find('.items').find('.completeButton').simulate('click');
+	 	expect(doneFunction.called).toBe(true)
 	 })
 
 	 it("can call editFunc prop",()=>{
