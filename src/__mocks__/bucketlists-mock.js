@@ -1,4 +1,4 @@
-const bucketlistmock = { status: 'failed',
+const bucketlistmock = { status: 'success',
   data: [{ id: 1,
     name: 'Bucketlist1',
     description: 'Testing one'
