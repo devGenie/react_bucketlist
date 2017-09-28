@@ -59,7 +59,7 @@ class Bucketlist extends React.Component{
 	}
 
 	completeAction(result){
-		if(this.state.items.length>3){
+		if(this.state.items.length<3){
 			let newVar=this.state.items.slice()
 			newVar.push(result)
 			this.setState({items:newVar})
