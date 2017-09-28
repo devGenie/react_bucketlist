@@ -56,7 +56,7 @@ class RegisterForm extends React.Component{
 					 			progress:'hide',
 					 			button:''
 					 		})
-					 	window.Materialize.toast("Oh No!, something went wrong, please try again.",4000)
+					 	//window.Materialize.toast("Oh No!, something went wrong, please try again.",4000)
 					 })
 	}
 
