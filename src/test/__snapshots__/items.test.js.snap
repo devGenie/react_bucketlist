@@ -115,3 +115,119 @@ exports[`<BucketListItems/> can render successfully 1`] = `
   </ul>
 </BucketListItems>
 `;
+
+exports[`<BucketListItems/> item can render successfully 1`] = `
+<BucketListItems
+  data={
+    Array [
+      Object {
+        "complete_status": true,
+        "date_completed": "mm/yy",
+        "id": 1,
+        "name": "Bucket1",
+      },
+    ]
+  }
+  editFunc={[Function]}
+>
+  <ul
+    className="bkitems"
+  >
+    <BucketListItem
+      data={
+        Object {
+          "complete_status": true,
+          "date_completed": "mm/yy",
+          "id": 1,
+          "name": "Bucket1",
+        }
+      }
+      itemIndex={0}
+      key="0"
+      onEdit={[Function]}
+    >
+      <li
+        className="items"
+      >
+        <span
+          className="item_name"
+        >
+          Bucket1
+        </span>
+        <div
+          className="right"
+        >
+          <SeeMore>
+            <div
+              className="over_flow_button"
+            >
+              <a
+                className="dropdown_toggle"
+              >
+                <i
+                  className="material-icons"
+                >
+                  more_vert
+                </i>
+              </a>
+              <div
+                className="overflow_content"
+              >
+                <a
+                  className="dropdown_icon completeButton"
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons"
+                  >
+                    check_box
+                  </i>
+                </a>
+                <a
+                  className="dropdown_icon editButton"
+                  data-target="item_edit_model"
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons"
+                  >
+                    edit
+                  </i>
+                </a>
+                <a
+                  className="dropdown_icon deleteButton"
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons"
+                  >
+                    delete
+                  </i>
+                </a>
+              </div>
+            </div>
+          </SeeMore>
+        </div>
+        <span
+          className="complete_status"
+        >
+          <div
+            className="success"
+          >
+            <span
+              className="left"
+            >
+              Completed
+            </span>
+            <i
+              className="material-icons right"
+            >
+              check_box
+            </i>
+          </div>
+        </span>
+      </li>
+    </BucketListItem>
+  </ul>
+</BucketListItems>
+`;
