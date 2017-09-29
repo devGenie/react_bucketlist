@@ -26,13 +26,13 @@ describe("<BucketListItems/>",()=>{
 
 	beforeEach(()=>{
 		editFunc = stub();
-		fetchMock = stub(window,'fetch').returnsPromise().resolves({});
+		fetchMock = stub(window,'fetch').returnsPromise().resolves({status:'success'});
 		doneFunction=spy(BucketListItem.prototype,'handleDone');
 		editFuncion=spy(BucketListItem.prototype,'handleEdit');
 		deleteFunction = spy(BucketListItem.prototype,'handleDelete');
 		bucketlistitems = mount(<BucketListItems editFunc={editFunc}
 	 										   data={[itemdata]}/>);
-	 	item = mount(<BucketListItem data={itemdata}/>);
+	 	item = mount(<BucketListItem data={itemdata} handleEdit={editFunc}/>);
 	})
 
 	afterEach(()=>{
@@ -58,6 +58,11 @@ describe("<BucketListItems/>",()=>{
 	 it("handle item can be deleted",()=>{
 	 	bucketlistitems.find('.items').find('.deleteButton').simulate('click');
 	 	expect(deleteFunction.called).toBe(true)
+	 })
+
+	 it("item can be edited",()=>{
+	 	bucketlistitems.find('.items').find('.editButton').simulate('click');
+	 	expect(editFuncion.called).toBe(true)
 	 })
 
 	 it("can call editFunc prop",()=>{
