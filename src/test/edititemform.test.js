@@ -41,5 +41,14 @@ describe('<BucketlistForm/>',()=>{
 		expect(toJson(formMount)).toMatchSnapshot()
 	});
 
+	it('can submit data',()=>{
+		formMount.find('form').simulate('submit',{
+			preventDefault:()=>{}
+		});
+		expect(submitSpy.called).toBe(true)
+	});
+
+
+
 	
 })
