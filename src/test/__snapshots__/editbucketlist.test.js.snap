@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BucketlistForm/> can render correctly 1`] = `
+<EditBucketlist
+  caller={[Function]}
+>
+  <div
+    className="modal"
+    id="EditBucketlist"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <div
+        className="modal-content"
+      >
+        <h4
+          className="header2"
+        >
+          Edit Bucketlist
+        </h4>
+        <FieldWrapper
+          Label="Name"
+        >
+          <div
+            className="input-field  "
+          >
+            <input
+              className="validate"
+              id="name"
+              name="name"
+              onChange={[Function]}
+              placeholder="Name of bucketlist"
+              type="text"
+              value=""
+            />
+            <label>
+              Name
+            </label>
+          </div>
+        </FieldWrapper>
+        <FieldWrapper>
+          <div
+            className="input-field  "
+          >
+            <textarea
+              name="description"
+              onChange={[Function]}
+              placeholder="Description"
+              value=""
+            />
+            <label />
+          </div>
+        </FieldWrapper>
+        <FieldWrapper
+          extraz="right"
+        >
+          <div
+            className="input-field right"
+          >
+            <button
+              className="btn"
+            >
+              Confirm Edit
+            </button>
+            <label />
+          </div>
+        </FieldWrapper>
+      </div>
+    </form>
+  </div>
+</EditBucketlist>
+`;
