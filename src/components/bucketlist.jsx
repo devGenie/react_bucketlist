@@ -91,7 +91,6 @@ class Bucketlist extends React.Component{
 	}
 
 	handleItemDelete(itemId){
-		console.log('clicked')
 	_.remove(this.state.items,{
 		id:itemId
 	})
