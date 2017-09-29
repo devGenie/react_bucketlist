@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/devGenie/react_bucketlist.svg?branch=react-tests)](https://travis-ci.org/devGenie/react_bucketlist) [![Coverage Status](https://coveralls.io/repos/github/devGenie/react_bucketlist/badge.svg?branch=react-tests)](https://coveralls.io/github/devGenie/react_bucketlist?branch=react-tests)
-[![Coverage Status](https://coveralls.io/repos/github/devGenie/react_bucketlist/badge.svg?branch=react-tests)](https://coveralls.io/github/devGenie/react_bucketlist?branch=react-tests)
+[![Build Status](https://travis-ci.org/devGenie/react_bucketlist.svg?branch=react-tests)](https://travis-ci.org/devGenie/react_bucketlist) [![Coverage Status](https://coveralls.io/repos/github/devGenie/react_bucketlist/badge.svg?branch=master)](https://coveralls.io/github/devGenie/react_bucketlist?branch=master)
 
 ## Bucketlist 
 A bucketlist is a list of stuff you ought to do before you go ghost aka kick the bucket. It is a list of goals that need to be achieved before a certain age.
