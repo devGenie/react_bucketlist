@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/devGenie/react_bucketlist.svg?branch=react-tests)](https://travis-ci.org/devGenie/react_bucketlist) [![Coverage Status](https://coveralls.io/repos/github/devGenie/react_bucketlist/badge.svg?branch=master)](https://coveralls.io/github/devGenie/react_bucketlist?branch=master)
-
+[![Build Status](https://travis-ci.org/devGenie/react_bucketlist.svg?branch=react-tests)](https://travis-ci.org/devGenie/react_bucketlist) [![Coverage Status](https://coveralls.io/repos/github/devGenie/react_bucketlist/badge.svg?branch=react-tests)](https://coveralls.io/github/devGenie/react_bucketlist?branch=react-tests)
 ## Bucketlist 
 A bucketlist is a list of stuff you ought to do before you go ghost aka kick the bucket. It is a list of goals that need to be achieved before a certain age.
 
@@ -7,5 +6,25 @@ This bucket list application was built on top Reactjs to consume a public REST a
 
 Visit [https://bucketlistfairy2.herokuapp.com/](https://bucketlistfairy2.herokuapp.com/) for a live preview.
 
-
 **Installation**
+```
+$ git clone https://github.com/devGenie/react_bucketlist
+$ cd react_bucketlist
+$ git pull master
+```
+**Usage**
+*To get started*
+```
+$ cd react_bucketlist
+$ npm install
+```
+
+*to run tests*
+```
+$ npm test 
+```
+
+*To run the application*
+```
+$ npm start
+```
