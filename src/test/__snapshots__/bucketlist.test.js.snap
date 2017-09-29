@@ -9,6 +9,7 @@ exports[`<Bucketlist /> renders correctly 1`] = `
       "name": "bucketlist",
     }
   }
+  formCallback={[Function]}
 >
   <div
     className="col s12 m6 l3 bucketlist"
@@ -30,20 +31,20 @@ exports[`<Bucketlist /> renders correctly 1`] = `
               className="right"
             >
               <i
-                className="material-icons float"
+                className="material-icons float addItem"
                 data-target="item_model"
                 onClick={[Function]}
               >
                 add
               </i>
               <i
-                className="material-icons float"
+                className="material-icons float deletelist"
                 onClick={[Function]}
               >
                 delete
               </i>
               <i
-                className="material-icons float"
+                className="material-icons float editlist"
                 data-target="EditBucketlist"
                 onClick={[Function]}
               >
