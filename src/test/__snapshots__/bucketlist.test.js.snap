@@ -1,0 +1,228 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Bucketlist /> renders correctly 1`] = `
+<Bucketlist
+  data={
+    Object {
+      "description": "bucketlist",
+      "id": 1,
+      "name": "bucketlist",
+    }
+  }
+>
+  <div
+    className="col s12 m6 l3 bucketlist"
+  >
+    <div
+      className="card bk_card z-depth-5"
+    >
+      <div
+        className="card-content"
+      >
+        <span
+          className="card-title"
+        >
+          <div
+            className="listtitle"
+          >
+            bucketlist
+            <div
+              className="right"
+            >
+              <i
+                className="material-icons float"
+                data-target="item_model"
+                onClick={[Function]}
+              >
+                add
+              </i>
+              <i
+                className="material-icons float"
+                onClick={[Function]}
+              >
+                delete
+              </i>
+              <i
+                className="material-icons float"
+                data-target="EditBucketlist"
+                onClick={[Function]}
+              >
+                edit
+              </i>
+            </div>
+          </div>
+          <p
+            className="about"
+          >
+            bucketlist
+          </p>
+        </span>
+        <BucketListItems
+          bucketlist={1}
+          data={
+            Array [
+              Object {
+                "complete_status": true,
+                "date_completed": "mm/yy",
+                "id": 1,
+                "name": "Bucket1",
+              },
+            ]
+          }
+          deleteFunc={[Function]}
+          editFunc={[Function]}
+        >
+          <ul
+            className="bkitems"
+          >
+            <BucketListItem
+              bucketlist={1}
+              data={
+                Object {
+                  "complete_status": true,
+                  "date_completed": "mm/yy",
+                  "id": 1,
+                  "name": "Bucket1",
+                }
+              }
+              itemIndex={0}
+              key="0"
+              onDelete={[Function]}
+              onEdit={[Function]}
+            >
+              <li
+                className="items"
+              >
+                <span
+                  className="item_name"
+                >
+                  Bucket1
+                </span>
+                <div
+                  className="right"
+                >
+                  <SeeMore>
+                    <div
+                      className="over_flow_button"
+                    >
+                      <a
+                        className="dropdown_toggle"
+                      >
+                        <i
+                          className="material-icons"
+                        >
+                          more_vert
+                        </i>
+                      </a>
+                      <div
+                        className="overflow_content"
+                      >
+                        <a
+                          className="dropdown_icon completeButton"
+                          onClick={[Function]}
+                        >
+                          <i
+                            className="material-icons"
+                          >
+                            check_box
+                          </i>
+                        </a>
+                        <a
+                          className="dropdown_icon editButton"
+                          data-target="item_edit_model"
+                          onClick={[Function]}
+                        >
+                          <i
+                            className="material-icons"
+                          >
+                            edit
+                          </i>
+                        </a>
+                        <a
+                          className="dropdown_icon deleteButton"
+                          onClick={[Function]}
+                        >
+                          <i
+                            className="material-icons"
+                          >
+                            delete
+                          </i>
+                        </a>
+                      </div>
+                    </div>
+                  </SeeMore>
+                </div>
+                <span
+                  className="complete_status"
+                >
+                  <div
+                    className="success"
+                  >
+                    <span
+                      className="left"
+                    >
+                      Completed
+                    </span>
+                    <i
+                      className="material-icons right"
+                    >
+                      check_box
+                    </i>
+                  </div>
+                </span>
+              </li>
+            </BucketListItem>
+          </ul>
+        </BucketListItems>
+      </div>
+      <Paginate
+        loader="show"
+        next=""
+        previous=""
+        trigger={[Function]}
+      >
+        <ul
+          className="item-pagination"
+        >
+          <div
+            className="left"
+          >
+            <img
+              className="loader-img show"
+              src="../images/loader.gif"
+            />
+          </div>
+          <div
+            className="right"
+          >
+            <li
+              className="item-page item-previous left"
+              onClick={[Function]}
+            >
+              <a>
+                <i
+                  className="material-icons"
+                >
+                  chevron_left
+                </i>
+              </a>
+            </li>
+            <li
+              className="item-page item-next right"
+              onClick={[Function]}
+            >
+              <a>
+                <i
+                  className="material-icons"
+                >
+                  chevron_right
+                </i>
+              </a>
+            </li>
+          </div>
+        </ul>
+      </Paginate>
+    </div>
+  </div>
+</Bucketlist>
+`;
