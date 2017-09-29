@@ -36,13 +36,11 @@ class BucketListItem extends React.Component{
 			   "method":"DELETE"}
 		).then((response)=>response.json())
 		.then((jsonResponse)=>{
-			console.log(jsonResponse)
 			if(jsonResponse.status=='success'){
 				this.props.onDelete(this.props.data.id)
-				console.log("yess")
 			}
 			else{
-				console.log(jsonResponse.message);
+				//console.log(jsonResponse.message);
 			}
 		})
 	}
