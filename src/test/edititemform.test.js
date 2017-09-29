@@ -48,7 +48,14 @@ describe('<BucketlistForm/>',()=>{
 		expect(submitSpy.called).toBe(true)
 	});
 
-
+	it('can handle change event',()=>{
+		formMount.find('form').find({name:'name'}).simulate('change',{
+			target:{
+				value:'changed'
+			}
+		});
+		expect(changeSpy.called).toBe(true)
+	})
 
 	
 })
