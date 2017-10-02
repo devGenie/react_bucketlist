@@ -11,8 +11,7 @@ class ChangePassword extends React.Component{
 
 	handleSubmit(event){
 		event.preventDefault();
-		var pt=this.props.caller();
-		var url="https://bucketapi.herokuapp.com/api/v1/bucketlists/auth/password_reset";
+		var url="https://bucketapi.herokuapp.com/api/v1/auth/password_reset";
 		fetch(url,
 			  {
 			  	headers:{
@@ -22,12 +21,15 @@ class ChangePassword extends React.Component{
 			  	method:'POST',
 			  	body:JSON.stringify({
 			  		"old_password":this.state.old_password,
+			  		"new_password":this.state.new_password
 			  	})
 			  }).then((response) => response.json())
 				.then((jsonResponse) => {
 					if(jsonResponse.status === 'success'){
-						//this.props.onComplete(jsonResponse.data)
+						window.Materialize.toast(jsonResponse.message,4000)
+
 					}else{
+						window.Materialize.toast(jsonResponse.message,4000)
 						//alert(JSON.stringify(jsonResponse.message))
 					}
 				})
@@ -51,11 +53,11 @@ class ChangePassword extends React.Component{
 					</h4>
 
 					<FieldWrapper Label="Old Password">
-						<input placeholder="Old Password" type="text" name="old_password" id="old_password" className="validate" required onChange={this.handleChange}/>
+						<input placeholder="Old Password" type="password" name="old_password" id="old_password" className="validate" required onChange={this.handleChange}/>
 					</FieldWrapper>	
 
 					<FieldWrapper Label="New Password">
-						<input placeholder="New Password" type="text" name="new_password" id="item_name" className="validate" required onChange={this.handleChange}/>
+						<input placeholder="New Password" type="password" name="new_password" id="item_name" className="validate" required onChange={this.handleChange}/>
 					</FieldWrapper>			
 
 					<FieldWrapper extraz="right">
