@@ -6,6 +6,7 @@ import EditItem from './edit-item';
 import EditBucketlist from './edit-bucketlist';
 import Spinner from './notifications/spinner';
 import BucketLists from './bucketlists';
+import ChangePassword from './change-password';
 import _ from 'lodash';
 
 
@@ -32,7 +33,8 @@ class DashBoard extends React.Component{
 					editedBucketlist:{name:'',description:''},
 					view:{id:'',name:'',description:''}
 				}
-				
+
+		this.logout=this.logout.bind(this)		
 		this.caller=''
 		this.caller_func=''
 		this.handleItemEdit=this.handleItemEdit.bind(this)
@@ -112,6 +114,27 @@ class DashBoard extends React.Component{
 		return this.caller
 	}
 
+	logout(){
+
+		fetch("https://bucketapi.herokuapp.com/api/v1/auth/logout",
+			   {headers:{
+			   		Authorization:sessionStorage.getItem('auth')
+			   },
+			   "method":"GET"}
+		).then((response)=>response.json())
+		.then((jsonResponse)=>{
+			if(jsonResponse.status==='success'){
+				sessionStorage.setItem('auth',false);
+				sessionStorage.setItem('isAuthenticated',true);
+				window.location='/'
+			}
+			else{
+				//alert(jsonResponse.message);
+			}
+			this.setState({spinner:'hide'})
+		})
+	}
+
 
 	handleItemEdit(bucketlist_id,item,callback){
 		this.caller=bucketlist_id
@@ -136,7 +159,7 @@ class DashBoard extends React.Component{
 	render(){
 		return(
 				<div>
-					<Topnav searchResults={this.searchResults}/>
+					<Topnav searchResults={this.searchResults} logout={this.logout}/>
 					<div className='container'>
 						<div className="row" id="bklist_controller">
 							<AddButton/>
@@ -154,6 +177,7 @@ class DashBoard extends React.Component{
 					<ItemForm caller={this.handleFetchCaller} onComplete={this.onComplete}/>
 					<EditBucketlist caller={this.handleFetchCaller} onComplete={this.onComplete} editing={this.state.editedBucketlist}/>
 					<EditItem caller={this.state.editedItem}/>
+					<ChangePassword />
 				</div>
 			)}
 }
