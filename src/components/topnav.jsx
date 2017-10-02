@@ -2,7 +2,7 @@ import React from 'react';
 import Search from './search';
 import User from './user-data';
 
-const Topnav = ({searchResults}) => (
+const Topnav = ({searchResults,logout}) => (
   <div className="navbar-fixed">
     <nav>
       <div className="nav-wrapper z-depth-5">
@@ -13,7 +13,7 @@ const Topnav = ({searchResults}) => (
               <Search searchResults={searchResults} />
             </div>
             <div className="col s3 hide-on-med-and-down">
-              <User/>
+              <User logout={logout}/>
             </div>
 
           </div>
