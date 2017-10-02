@@ -3,6 +3,7 @@
 exports[`<DashBoard> renders correctly 1`] = `
 <div>
   <Topnav
+    logout={[Function]}
     searchResults={[Function]}
   />
   <div
@@ -55,5 +56,6 @@ exports[`<DashBoard> renders correctly 1`] = `
       }
     }
   />
+  <ChangePassword />
 </div>
 `;
